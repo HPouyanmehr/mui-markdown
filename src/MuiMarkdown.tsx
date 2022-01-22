@@ -1,25 +1,84 @@
 import * as React from 'react';
 import Markdown, { MarkdownToJSX } from 'markdown-to-jsx';
 
-export interface MuiMarkdownProps {
+import defaultOverrides from './defaultOverrides';
+
+interface MuiMarkdownBaseProps {
   children: string;
   key?: React.Key;
-  overrides?: MarkdownToJSX.Overrides;
-  options?: MarkdownToJSX.Options;
 }
 
-const MuiMarkdown: React.FunctionComponent<MuiMarkdownProps> = (props) => {
-  const { children, key, options, overrides, ...otherProps } = props;
+export type MuiMarkdownProps =
+  | (MuiMarkdownBaseProps & {
+      overrides?: MarkdownToJSX.Overrides;
+      options?: never;
+    })
+  | (MuiMarkdownBaseProps & {
+      options?: MarkdownToJSX.Options;
+      overrides?: never;
+    });
 
-  if (options) {
+const MuiMarkdown: React.FunctionComponent<MuiMarkdownProps> = (props) => {
+  const getMarkdownComponent = (props: MuiMarkdownProps) => {
+    const { children, key, options, overrides } = props;
+
+    if (options) {
+      const { overrides: overridesInOptions, ...otherOptions } = options;
+
+      if (overridesInOptions)
+        return (
+          <Markdown
+            key={key && key}
+            options={{
+              overrides: { ...defaultOverrides, ...overridesInOptions },
+              ...otherOptions,
+            }}
+          >
+            {children}
+          </Markdown>
+        );
+
+      return (
+        <Markdown
+          key={key && key}
+          options={{
+            overrides: { ...defaultOverrides },
+            ...otherOptions,
+          }}
+        >
+          {children}
+        </Markdown>
+      );
+    }
+
+    if (overrides) {
+      return (
+        <Markdown
+          key={key && key}
+          options={{
+            overrides: { ...defaultOverrides, ...overrides },
+          }}
+        >
+          {children}
+        </Markdown>
+      );
+    }
+
     return (
-      <Markdown key={key && key} options={options}>
+      <Markdown
+        key={key && key}
+        options={{ overrides: { ...defaultOverrides } }}
+      >
         {children}
       </Markdown>
     );
-  }
+  };
 
-  return <Markdown key={key && key}>{children}</Markdown>;
+  return (
+    <React.Suspense fallback={<div>...</div>}>
+      {getMarkdownComponent(props)}
+    </React.Suspense>
+  );
 };
 
 export default MuiMarkdown;
