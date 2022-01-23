@@ -1,7 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-
-import MuiMarkdown from '../MuiMarkdown';
+import MuiMarkdown from '..';
 
 const stories = storiesOf('MuiMarkdown', module);
 
@@ -12,6 +11,6 @@ stories.add('App', () => {
 ## Heading two
 ### Heading three
 [mopeim](mopeim.com)
-  `}</MuiMarkdown>
+`}</MuiMarkdown>
   );
 });

@@ -1,4 +1,4 @@
 import MuiMarkdown from './MuiMarkdown';
 export default MuiMarkdown;
-import type { MuiMarkdownProps as Props } from './MuiMarkdown';
-export declare type MuiMarkdownProps = Props;
+export type { MuiMarkdownProps as MuiMarkdownProps } from './MuiMarkdown';
+export declare const defaultOverrides: import("markdown-to-jsx").MarkdownToJSX.Overrides;

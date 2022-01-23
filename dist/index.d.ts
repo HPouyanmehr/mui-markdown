@@ -1,19 +1,20 @@
-import * as React from 'react';
+import * as markdown_to_jsx from 'markdown-to-jsx';
 import { MarkdownToJSX } from 'markdown-to-jsx';
+import * as React from 'react';
 
 interface MuiMarkdownBaseProps {
     children: string;
     key?: React.Key;
 }
-declare type MuiMarkdownProps$1 = (MuiMarkdownBaseProps & {
+declare type MuiMarkdownProps = (MuiMarkdownBaseProps & {
     overrides?: MarkdownToJSX.Overrides;
     options?: never;
 }) | (MuiMarkdownBaseProps & {
     options?: MarkdownToJSX.Options;
     overrides?: never;
 });
-declare const MuiMarkdown: React.FunctionComponent<MuiMarkdownProps$1>;
+declare const MuiMarkdown: React.FunctionComponent<MuiMarkdownProps>;
 
-declare type MuiMarkdownProps = MuiMarkdownProps$1;
+declare const defaultOverrides: markdown_to_jsx.MarkdownToJSX.Overrides;
 
-export { MuiMarkdownProps, MuiMarkdown as default };
+export { MuiMarkdownProps, MuiMarkdown as default, defaultOverrides };

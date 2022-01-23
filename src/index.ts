@@ -1,5 +1,7 @@
 import MuiMarkdown from './MuiMarkdown';
 export default MuiMarkdown;
 
-import type { MuiMarkdownProps as Props } from './MuiMarkdown';
-export type MuiMarkdownProps = Props;
+export type { MuiMarkdownProps as MuiMarkdownProps } from './MuiMarkdown';
+
+import overrides from './defaultOverrides';
+export const defaultOverrides = overrides;
