@@ -1,1 +1,2 @@
-export * as MuiMarkdown from './MuiMarkdown';
+export { default as MuiMarkdown } from './MuiMarkdown';
+export * from './MuiMarkdown';
