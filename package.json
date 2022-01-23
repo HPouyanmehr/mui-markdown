@@ -1,13 +1,28 @@
 {
   "name": "mui-markdown",
-  "description": "MUI markdown component",
-  "version": "0.3.3",
-  "license": "MIT",
+  "version": "0.3.4",
+  "private": false,
   "author": "Hosein Pouyanmehr",
-  "homepage": "https://github.com/hajhosein/mui-markdown",
+  "description": "MUI markdown component",
+  "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
+  "keywords": [
+    "markdown",
+    "react markdown",
+    "mui",
+    "mui markdown",
+    "material-ui markdown"
+  ],
+  "homepage": "https://github.com/hajhosein/mui-markdown",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hajhosein/mui-markdown"
+  },
+  "bugs": {
+    "url": "https://github.com/hajhosein/mui-markdown/issues"
+  },
   "peerDependencies": {
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
