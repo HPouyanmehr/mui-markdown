@@ -14,12 +14,4 @@ declare type MuiMarkdownProps = (MuiMarkdownBaseProps & {
 });
 declare const MuiMarkdown: React.FunctionComponent<MuiMarkdownProps>;
 
-type MuiMarkdown_d_MuiMarkdownProps = MuiMarkdownProps;
-declare namespace MuiMarkdown_d {
-  export {
-    MuiMarkdown as default,
-    MuiMarkdown_d_MuiMarkdownProps as MuiMarkdownProps,
-  };
-}
-
-export { MuiMarkdown_d as MuiMarkdown };
+export { MuiMarkdownProps, MuiMarkdown as default };

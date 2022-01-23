@@ -1,2 +1,4 @@
-export { default as MuiMarkdown } from './MuiMarkdown';
-export * from './MuiMarkdown';
+import MuiMarkdown from './MuiMarkdown';
+export default MuiMarkdown;
+
+export type { MuiMarkdownProps } from './MuiMarkdown';
