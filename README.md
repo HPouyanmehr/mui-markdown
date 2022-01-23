@@ -33,13 +33,14 @@ export default App;
 
 Props available for `MuiMarkdown` component:
 
-| Name      | Type                    | Description                                 |
-| --------- | ----------------------- | ------------------------------------------- |
-| key       | React.key               | **optional**, use it to pass a key          |
-| overrides | MarkdownToJSX.Overrides | **optional**, check overrides section below |
-| options   | MarkdownToJSX.Options   | **optional**, check options section below   |
+| Name                  | Type                    | Default | Optional or Mandatory |
+| --------------------- | ----------------------- | ------- | --------------------- |
+| key                   | React.key               |         | **optional**          |
+| overrides             | MarkdownToJSX.Overrides |         | **optional**          |
+| options               | MarkdownToJSX.Options   |         | **optional**          |
+| disableTableContainer | boolean                 | false   | **optional**          |
 
-### Overrides
+### overrides
 
 You can optionally override a tag to use your component.
 
@@ -155,8 +156,28 @@ const App = () => {
 export default App;
 ```
 
-### Options
+### options
 
 You can read about options in the [markdown-to-jsx](https://www.npmjs.com/package/markdown-to-jsx#parsing-options) docs.
 
 **Note:** If you want to override something and also need to set some options, add the `overrides` property in the `options`. Don't use overrides and options property together on the `MuiMarkdown` component.
+
+### disableTableContainer
+
+Optionally you can disable container wrapper around tables. If true, table component will be like this:
+
+```js
+  <Table>
+    {children}
+  <Table>
+```
+
+default(false):
+
+```js
+<TableContainer component={Paper}>
+  <Table>
+    {children}
+  <Table>
+</TableContainer>
+```
