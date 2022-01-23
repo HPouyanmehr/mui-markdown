@@ -1,11 +1,12 @@
 import * as React from 'react';
 import Markdown, { MarkdownToJSX } from 'markdown-to-jsx';
 
-import defaultOverrides from './defaultOverrides';
+import { getDefaultOverrides } from './defaultOverrides';
 
 interface MuiMarkdownBaseProps {
   children: string;
   key?: React.Key;
+  disableTableContainer?: boolean;
 }
 
 export type MuiMarkdownProps =
@@ -20,7 +21,8 @@ export type MuiMarkdownProps =
 
 const MuiMarkdown: React.FunctionComponent<MuiMarkdownProps> = (props) => {
   const getMarkdownComponent = (props: MuiMarkdownProps) => {
-    const { children, key, options, overrides } = props;
+    const { children, key, options, overrides, disableTableContainer } = props;
+    const defaultOverrides = getDefaultOverrides({ disableTableContainer });
 
     if (options) {
       const { overrides: overridesInOptions, ...otherOptions } = options;
