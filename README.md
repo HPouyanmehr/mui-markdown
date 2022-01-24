@@ -33,12 +33,13 @@ export default App;
 
 Props available for `MuiMarkdown` component:
 
-| Name                  | Type                    | Default | Optional or Mandatory |
-| --------------------- | ----------------------- | ------- | --------------------- |
-| key                   | React.key               |         | **optional**          |
-| overrides             | MarkdownToJSX.Overrides |         | **optional**          |
-| options               | MarkdownToJSX.Options   |         | **optional**          |
-| disableTableContainer | boolean                 | false   | **optional**          |
+| Name                  | Type                    | Default        | Optional or Mandatory |
+| --------------------- | ----------------------- | -------------- | --------------------- |
+| key                   | React.key               |                | **optional**          |
+| overrides             | MarkdownToJSX.Overrides |                | **optional**          |
+| options               | MarkdownToJSX.Options   |                | **optional**          |
+| disableTableContainer | boolean                 | false          | **optional**          |
+| blockquoteBorderColor | string                  | MUI info color | **optional**          |
 
 ### overrides
 
@@ -180,4 +181,20 @@ default(false):
     {children}
   <Table>
 </TableContainer>
+```
+
+### blockquoteBorderColor
+
+You can change the `blockquote` component border color with this property. The default color is `theme.palette.info.main`
+
+example:
+
+```js
+...
+<MuiMarkdown blockquoteBorderColor='gold'>
+{
+  `> This is a block of code`
+}
+</MuiMarkdown>
+...
 ```

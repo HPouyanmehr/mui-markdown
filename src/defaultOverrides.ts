@@ -2,6 +2,7 @@ import React from 'react';
 import { MarkdownToJSX } from 'markdown-to-jsx';
 
 import { TypographyProps } from '@mui/material';
+import { BlockquoteProps } from './components/Blockquote';
 
 const Button = React.lazy(() => import('@mui/material/Button'));
 const Link = React.lazy(() => import('@mui/material/Link'));
@@ -14,20 +15,28 @@ const TableFooter = React.lazy(() => import('@mui/material/TableFooter'));
 const TableHead = React.lazy(() => import('@mui/material/TableHead'));
 const TableRow = React.lazy(() => import('@mui/material/TableRow'));
 
+const Blockquote = React.lazy(() => import('./components/Blockquote'));
 const OrderedList = React.lazy(() => import('./components/OrderedList'));
 const TableWrapper = React.lazy(() => import('./components/TableWrapper'));
 const UnorderedList = React.lazy(() => import('./components/UnorderedList'));
 
 export interface GetDefaultOverridesProps {
   disableTableContainer?: boolean;
+  blockquoteBorderColor?: string;
 }
 
 export const getDefaultOverrides = (props: GetDefaultOverridesProps) => {
-  const { disableTableContainer = false } = props;
+  const { disableTableContainer = false, blockquoteBorderColor } = props;
 
   const defaultOverrides: MarkdownToJSX.Overrides = {
     a: {
       component: Link,
+    },
+    blockquote: {
+      component: Blockquote,
+      props: {
+        borderColor: blockquoteBorderColor,
+      } as BlockquoteProps,
     },
     button: {
       component: Button,
