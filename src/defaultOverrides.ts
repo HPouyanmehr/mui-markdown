@@ -3,7 +3,9 @@ import { MarkdownToJSX } from 'markdown-to-jsx';
 
 import { TypographyProps } from '@mui/material';
 
+const Button = React.lazy(() => import('@mui/material/Button'));
 const Link = React.lazy(() => import('@mui/material/Link'));
+const ListItemText = React.lazy(() => import('@mui/material/ListItemText'));
 const Typography = React.lazy(() => import('@mui/material/Typography'));
 const Table = React.lazy(() => import('@mui/material/Table'));
 const TableBody = React.lazy(() => import('@mui/material/TableBody'));
@@ -12,7 +14,9 @@ const TableFooter = React.lazy(() => import('@mui/material/TableFooter'));
 const TableHead = React.lazy(() => import('@mui/material/TableHead'));
 const TableRow = React.lazy(() => import('@mui/material/TableRow'));
 
+const OrderedList = React.lazy(() => import('./components/OrderedList'));
 const TableWrapper = React.lazy(() => import('./components/TableWrapper'));
+const UnorderedList = React.lazy(() => import('./components/UnorderedList'));
 
 export interface GetDefaultOverridesProps {
   disableTableContainer?: boolean;
@@ -24,6 +28,12 @@ export const getDefaultOverrides = (props: GetDefaultOverridesProps) => {
   const defaultOverrides: MarkdownToJSX.Overrides = {
     a: {
       component: Link,
+    },
+    button: {
+      component: Button,
+    },
+    Button: {
+      component: Button,
     },
     h1: {
       component: Typography,
@@ -49,6 +59,12 @@ export const getDefaultOverrides = (props: GetDefaultOverridesProps) => {
       component: Typography,
       props: { variant: 'h6' } as TypographyProps,
     },
+    li: {
+      component: ListItemText,
+    },
+    ol: {
+      component: OrderedList,
+    },
     p: {
       component: Typography,
       props: { variant: 'body1' } as TypographyProps,
@@ -73,6 +89,9 @@ export const getDefaultOverrides = (props: GetDefaultOverridesProps) => {
     },
     tr: {
       component: TableRow,
+    },
+    ul: {
+      component: UnorderedList,
     },
   };
 
