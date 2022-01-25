@@ -19,6 +19,7 @@ const TableRow = React.lazy(() => import('@mui/material/TableRow'));
 const Blockquote = React.lazy(() => import('./components/Blockquote'));
 const InlineCode = React.lazy(() => import('./components/InlineCode'));
 const OrderedList = React.lazy(() => import('./components/OrderedList'));
+const PreBlock = React.lazy(() => import('./components/PreBlock'));
 const TableWrapper = React.lazy(() => import('./components/TableWrapper'));
 const UnorderedList = React.lazy(() => import('./components/UnorderedList'));
 
@@ -96,6 +97,9 @@ export const getDefaultOverrides = (props: GetDefaultOverridesProps) => {
     p: {
       component: Typography,
       props: { variant: 'body1', gutterBottom: true } as TypographyProps,
+    },
+    pre: {
+      component: PreBlock,
     },
     table: {
       component: disableTableContainer ? Table : TableWrapper,
