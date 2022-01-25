@@ -8,6 +8,8 @@ interface MuiMarkdownBaseProps {
   key?: React.Key;
   disableTableContainer?: boolean;
   blockquoteBorderColor?: string;
+  inlineCodeBgColor?: string;
+  inlineCodeColor?: string;
 }
 
 export type MuiMarkdownProps =
@@ -29,10 +31,14 @@ const MuiMarkdown: React.FunctionComponent<MuiMarkdownProps> = (props) => {
       overrides,
       disableTableContainer,
       blockquoteBorderColor,
+      inlineCodeBgColor,
+      inlineCodeColor,
     } = props;
     const defaultOverrides = getDefaultOverrides({
       disableTableContainer,
       blockquoteBorderColor,
+      inlineCodeBgColor,
+      inlineCodeColor,
     });
 
     if (options) {

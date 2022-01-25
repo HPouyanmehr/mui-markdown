@@ -33,13 +33,15 @@ export default App;
 
 Props available for `MuiMarkdown` component:
 
-| Name                  | Type                    | Default        | Optional or Mandatory |
-| --------------------- | ----------------------- | -------------- | --------------------- |
-| key                   | React.key               |                | **optional**          |
-| overrides             | MarkdownToJSX.Overrides |                | **optional**          |
-| options               | MarkdownToJSX.Options   |                | **optional**          |
-| disableTableContainer | boolean                 | false          | **optional**          |
-| blockquoteBorderColor | string                  | MUI info color | **optional**          |
+| Name                  | Type                    | Default                  | Optional or Mandatory |
+| --------------------- | ----------------------- | ------------------------ | --------------------- |
+| key                   | React.key               |                          | **optional**          |
+| overrides             | MarkdownToJSX.Overrides |                          | **optional**          |
+| options               | MarkdownToJSX.Options   |                          | **optional**          |
+| disableTableContainer | boolean                 | false                    | **optional**          |
+| blockquoteBorderColor | string                  | MUI info color           | **optional**          |
+| inlineCodeBgColor     | string                  | rgba(127, 127, 127, 0.2) | **optional**          |
+| inlineCodeColor       | string                  | currentcolor             | **optional**          |
 
 ### overrides
 
@@ -194,6 +196,38 @@ example:
 <MuiMarkdown blockquoteBorderColor='gold'>
 {
   `> This is a block of code`
+}
+</MuiMarkdown>
+...
+```
+
+### inlineCodeBgColor
+
+This property helps you change the inline code background color.
+
+example:
+
+```js
+...
+<MuiMarkdown inlineCodeBgColor='gold'>
+{
+  '<p>Install the package via `npm i mui-markdown` or `yarn add mui-markdown`</p>'
+}
+</MuiMarkdown>
+...
+```
+
+### inlineCodeColor
+
+With this property you're able to change inline code text color.
+
+example:
+
+```js
+...
+<MuiMarkdown inlineCodeColor='dodgerblue'>
+{
+  '<p>Install the package via `npm i mui-markdown` or `yarn add mui-markdown`</p>'
 }
 </MuiMarkdown>
 ...

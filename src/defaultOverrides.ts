@@ -3,6 +3,7 @@ import { MarkdownToJSX } from 'markdown-to-jsx';
 
 import { TypographyProps } from '@mui/material';
 import { BlockquoteProps } from './components/Blockquote';
+import { InlineCodeProps } from './components/InlineCode';
 
 const Button = React.lazy(() => import('@mui/material/Button'));
 const Link = React.lazy(() => import('@mui/material/Link'));
@@ -16,6 +17,7 @@ const TableHead = React.lazy(() => import('@mui/material/TableHead'));
 const TableRow = React.lazy(() => import('@mui/material/TableRow'));
 
 const Blockquote = React.lazy(() => import('./components/Blockquote'));
+const InlineCode = React.lazy(() => import('./components/InlineCode'));
 const OrderedList = React.lazy(() => import('./components/OrderedList'));
 const TableWrapper = React.lazy(() => import('./components/TableWrapper'));
 const UnorderedList = React.lazy(() => import('./components/UnorderedList'));
@@ -23,10 +25,17 @@ const UnorderedList = React.lazy(() => import('./components/UnorderedList'));
 export interface GetDefaultOverridesProps {
   disableTableContainer?: boolean;
   blockquoteBorderColor?: string;
+  inlineCodeBgColor?: string;
+  inlineCodeColor?: string;
 }
 
 export const getDefaultOverrides = (props: GetDefaultOverridesProps) => {
-  const { disableTableContainer = false, blockquoteBorderColor } = props;
+  const {
+    disableTableContainer = false,
+    blockquoteBorderColor,
+    inlineCodeBgColor,
+    inlineCodeColor,
+  } = props;
 
   const defaultOverrides: MarkdownToJSX.Overrides = {
     a: {
@@ -44,39 +53,49 @@ export const getDefaultOverrides = (props: GetDefaultOverridesProps) => {
     Button: {
       component: Button,
     },
+    code: {
+      component: InlineCode,
+      props: {
+        backgroundColor: inlineCodeBgColor,
+        color: inlineCodeColor,
+      } as InlineCodeProps,
+    },
     h1: {
       component: Typography,
-      props: { variant: 'h1' } as TypographyProps,
+      props: { variant: 'h1', gutterBottom: true } as TypographyProps,
     },
     h2: {
       component: Typography,
-      props: { variant: 'h2' } as TypographyProps,
+      props: { variant: 'h2', gutterBottom: true } as TypographyProps,
     },
     h3: {
       component: Typography,
-      props: { variant: 'h3' } as TypographyProps,
+      props: { variant: 'h3', gutterBottom: true } as TypographyProps,
     },
     h4: {
       component: Typography,
-      props: { variant: 'h4' } as TypographyProps,
+      props: { variant: 'h4', gutterBottom: true } as TypographyProps,
     },
     h5: {
       component: Typography,
-      props: { variant: 'h5' } as TypographyProps,
+      props: { variant: 'h5', gutterBottom: true } as TypographyProps,
     },
     h6: {
       component: Typography,
-      props: { variant: 'h6' } as TypographyProps,
+      props: { variant: 'h6', gutterBottom: true } as TypographyProps,
     },
     li: {
       component: ListItemText,
+    },
+    Link: {
+      component: Link,
     },
     ol: {
       component: OrderedList,
     },
     p: {
       component: Typography,
-      props: { variant: 'body1' } as TypographyProps,
+      props: { variant: 'body1', gutterBottom: true } as TypographyProps,
     },
     table: {
       component: disableTableContainer ? Table : TableWrapper,
