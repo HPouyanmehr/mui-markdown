@@ -9,6 +9,7 @@ import dts from 'rollup-plugin-dts';
 export default [
   {
     input: './src/index.ts',
+    inlineDynamicImports: true,
     output: [
       {
         file: 'dist/index.js',
