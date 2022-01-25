@@ -1,9 +1,11 @@
 import React from 'react';
 import { MarkdownToJSX } from 'markdown-to-jsx';
+import { PrismTheme } from 'prism-react-renderer';
 
 import { TypographyProps } from '@mui/material';
 import { BlockquoteProps } from './components/Blockquote';
 import { InlineCodeProps } from './components/InlineCode';
+import { PreBlockProps } from './components/PreBlock';
 
 const Button = React.lazy(() => import('@mui/material/Button'));
 const Link = React.lazy(() => import('@mui/material/Link'));
@@ -28,6 +30,7 @@ export interface GetDefaultOverridesProps {
   blockquoteBorderColor?: string;
   inlineCodeBgColor?: string;
   inlineCodeColor?: string;
+  codeBlockTheme?: PrismTheme;
 }
 
 export const getDefaultOverrides = (props: GetDefaultOverridesProps) => {
@@ -36,6 +39,7 @@ export const getDefaultOverrides = (props: GetDefaultOverridesProps) => {
     blockquoteBorderColor,
     inlineCodeBgColor,
     inlineCodeColor,
+    codeBlockTheme,
   } = props;
 
   const defaultOverrides: MarkdownToJSX.Overrides = {
@@ -54,13 +58,13 @@ export const getDefaultOverrides = (props: GetDefaultOverridesProps) => {
     Button: {
       component: Button,
     },
-    code: {
-      component: InlineCode,
-      props: {
-        backgroundColor: inlineCodeBgColor,
-        color: inlineCodeColor,
-      } as InlineCodeProps,
-    },
+    // code: {
+    //   component: InlineCode,
+    //   props: {
+    //     backgroundColor: inlineCodeBgColor,
+    //     color: inlineCodeColor,
+    //   } as InlineCodeProps,
+    // },
     h1: {
       component: Typography,
       props: { variant: 'h1', gutterBottom: true } as TypographyProps,
@@ -100,6 +104,7 @@ export const getDefaultOverrides = (props: GetDefaultOverridesProps) => {
     },
     pre: {
       component: PreBlock,
+      props: { theme: codeBlockTheme } as PreBlockProps,
     },
     table: {
       component: disableTableContainer ? Table : TableWrapper,

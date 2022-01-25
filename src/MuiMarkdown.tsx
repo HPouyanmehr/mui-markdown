@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Markdown, { MarkdownToJSX } from 'markdown-to-jsx';
+import { PrismTheme } from 'prism-react-renderer';
 
 import { getDefaultOverrides } from './defaultOverrides';
 
@@ -10,6 +11,7 @@ interface MuiMarkdownBaseProps {
   blockquoteBorderColor?: string;
   inlineCodeBgColor?: string;
   inlineCodeColor?: string;
+  codeBlockTheme?: PrismTheme;
 }
 
 export type MuiMarkdownProps =
@@ -33,12 +35,14 @@ const MuiMarkdown: React.FunctionComponent<MuiMarkdownProps> = (props) => {
       blockquoteBorderColor,
       inlineCodeBgColor,
       inlineCodeColor,
+      codeBlockTheme,
     } = props;
     const defaultOverrides = getDefaultOverrides({
       disableTableContainer,
       blockquoteBorderColor,
       inlineCodeBgColor,
       inlineCodeColor,
+      codeBlockTheme,
     });
 
     if (options) {
@@ -86,7 +90,9 @@ const MuiMarkdown: React.FunctionComponent<MuiMarkdownProps> = (props) => {
     return (
       <Markdown
         key={key && key}
-        options={{ overrides: { ...defaultOverrides } }}
+        options={{
+          overrides: { ...defaultOverrides },
+        }}
       >
         {children}
       </Markdown>

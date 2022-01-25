@@ -4,14 +4,15 @@ import { PrismTheme } from 'prism-react-renderer';
 
 import HighlightSyntax from './HighlightSyntax';
 
-interface IPreBlockProps {
+export interface PreBlockProps {
   children: React.ReactNode | any;
   theme?: PrismTheme;
 }
 
-const PreBlock: React.FunctionComponent<IPreBlockProps> = (props) => {
+const PreBlock: React.FunctionComponent<PreBlockProps> = (props) => {
   const { children, theme } = props;
-  if (children && children.props && children.props.component === 'code') {
+
+  if (children && children.type && children.type === 'code') {
     const lang = children.props.className
       ? children.props.className.replace('lang-', '')
       : 'tsx';

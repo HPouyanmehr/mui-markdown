@@ -42,6 +42,7 @@ Props available for `MuiMarkdown` component:
 | blockquoteBorderColor | string                  | MUI info color           | **optional**          |
 | inlineCodeBgColor     | string                  | rgba(127, 127, 127, 0.2) | **optional**          |
 | inlineCodeColor       | string                  | currentcolor             | **optional**          |
+| codeBlockTheme        | PrismTheme              | vsDark                   | **optional**          |
 
 ### overrides
 
@@ -232,3 +233,22 @@ example:
 </MuiMarkdown>
 ...
 ```
+
+### codeBlockTheme
+
+mui-markdown uses [prism-react-renderer](https://github.com/FormidableLabs/prism-react-renderer) to highlight code blocks. With this property you can change the highlight theme. Availabe themes are:
+
+- dracula
+- duotoneDark
+- duotoneLight
+- github
+- nightOwl
+- nightOwlLight
+- oceanicNext
+- okaidia
+- palenight
+- shadesOfPurple
+- synthwave84
+- ultramin
+- vsDark
+- vsLight

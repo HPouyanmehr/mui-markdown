@@ -13,9 +13,11 @@ const InlineCode: React.FunctionComponent<InlineCodeProps> = (props) => {
     children,
   } = props;
 
+  console.log('i am');
+
   return (
     <Paper
-      component='span'
+      component='code'
       sx={{
         backgroundColor,
         boxShadow: 'none',
