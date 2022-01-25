@@ -4,7 +4,6 @@ import { PrismTheme } from 'prism-react-renderer';
 
 import { TypographyProps } from '@mui/material';
 import { BlockquoteProps } from './components/Blockquote';
-import { InlineCodeProps } from './components/InlineCode';
 import { PreBlockProps } from './components/PreBlock';
 
 const Button = React.lazy(() => import('@mui/material/Button'));
@@ -19,7 +18,6 @@ const TableHead = React.lazy(() => import('@mui/material/TableHead'));
 const TableRow = React.lazy(() => import('@mui/material/TableRow'));
 
 const Blockquote = React.lazy(() => import('./components/Blockquote'));
-const InlineCode = React.lazy(() => import('./components/InlineCode'));
 const OrderedList = React.lazy(() => import('./components/OrderedList'));
 const PreBlock = React.lazy(() => import('./components/PreBlock'));
 const TableWrapper = React.lazy(() => import('./components/TableWrapper'));
@@ -37,8 +35,8 @@ export const getDefaultOverrides = (props: GetDefaultOverridesProps) => {
   const {
     disableTableContainer = false,
     blockquoteBorderColor,
-    inlineCodeBgColor,
-    inlineCodeColor,
+    inlineCodeBgColor = 'rgba(126, 126, 126, 0.1)',
+    inlineCodeColor = 'currentcolor',
     codeBlockTheme,
   } = props;
 
@@ -58,13 +56,18 @@ export const getDefaultOverrides = (props: GetDefaultOverridesProps) => {
     Button: {
       component: Button,
     },
-    // code: {
-    //   component: InlineCode,
-    //   props: {
-    //     backgroundColor: inlineCodeBgColor,
-    //     color: inlineCodeColor,
-    //   } as InlineCodeProps,
-    // },
+    code: {
+      component: 'code',
+      props: {
+        style: {
+          backgroundColor: inlineCodeBgColor,
+          borderRadius: '4px',
+          color: inlineCodeColor,
+          margin: '0 0.2rem',
+          padding: '0.5rem 0.5rem',
+        } as React.CSSProperties,
+      },
+    },
     h1: {
       component: Typography,
       props: { variant: 'h1', gutterBottom: true } as TypographyProps,
