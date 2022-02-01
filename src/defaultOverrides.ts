@@ -93,13 +93,13 @@ export const getDefaultOverrides = (props: GetDefaultOverridesProps) => {
       props: { variant: 'h6', gutterBottom: true } as TypographyProps,
     },
     li: {
-      component: ListItemText,
+      component: 'li',
     },
     Link: {
       component: Link,
     },
     ol: {
-      component: OrderedList,
+      component: 'ol',
     },
     p: {
       component: Typography,
@@ -131,7 +131,7 @@ export const getDefaultOverrides = (props: GetDefaultOverridesProps) => {
       component: TableRow,
     },
     ul: {
-      component: UnorderedList,
+      component: 'ul',
     },
   };
 
