@@ -13,6 +13,12 @@ const lists = `
 1. item one
 2. item two
 3. item three
+
+## Nested list
+* item
+* item
+  * nested item
+  * nested item
 `;
 
 stories.add('Lists', () => {

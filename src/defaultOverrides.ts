@@ -18,10 +18,8 @@ const TableHead = React.lazy(() => import('@mui/material/TableHead'));
 const TableRow = React.lazy(() => import('@mui/material/TableRow'));
 
 const Blockquote = React.lazy(() => import('./components/Blockquote'));
-const OrderedList = React.lazy(() => import('./components/OrderedList'));
 const PreBlock = React.lazy(() => import('./components/PreBlock'));
 const TableWrapper = React.lazy(() => import('./components/TableWrapper'));
-const UnorderedList = React.lazy(() => import('./components/UnorderedList'));
 
 export interface GetDefaultOverridesProps {
   disableTableContainer?: boolean;
