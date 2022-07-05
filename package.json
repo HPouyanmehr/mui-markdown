@@ -1,8 +1,12 @@
 {
   "name": "mui-markdown",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "private": false,
-  "author": "Hosein Pouyanmehr",
+  "author": {
+    "name": "Hosein Pouyanmehr",
+    "email": "a.h.pouyanmehr@gmail.com",
+    "url": "https://github.com/hajhosein"
+  },
   "description": "mui-markdown uses markdown-to-jsx and MUI(formerly material-ui) to help you render MD/MDX files with MUI components.",
   "license": "MIT",
   "main": "dist/index.js",
