@@ -5,7 +5,7 @@ import { PrismTheme } from 'prism-react-renderer';
 import { getDefaultOverrides } from './defaultOverrides';
 
 interface MuiMarkdownBaseProps {
-  children: string;
+  children?: string;
   key?: React.Key;
   disableTableContainer?: boolean;
   blockquoteBorderColor?: string;
@@ -45,6 +45,8 @@ const MuiMarkdown: React.FunctionComponent<MuiMarkdownProps> = (props) => {
       codeBlockTheme,
     });
 
+    const mdChildren = children ? children : '';
+
     if (options) {
       const { overrides: overridesInOptions, ...otherOptions } = options;
 
@@ -57,7 +59,7 @@ const MuiMarkdown: React.FunctionComponent<MuiMarkdownProps> = (props) => {
               ...otherOptions,
             }}
           >
-            {children}
+            {mdChildren}
           </Markdown>
         );
 
@@ -69,7 +71,7 @@ const MuiMarkdown: React.FunctionComponent<MuiMarkdownProps> = (props) => {
             ...otherOptions,
           }}
         >
-          {children}
+          {mdChildren}
         </Markdown>
       );
     }
@@ -82,7 +84,7 @@ const MuiMarkdown: React.FunctionComponent<MuiMarkdownProps> = (props) => {
             overrides: { ...defaultOverrides, ...overrides },
           }}
         >
-          {children}
+          {mdChildren}
         </Markdown>
       );
     }
@@ -94,7 +96,7 @@ const MuiMarkdown: React.FunctionComponent<MuiMarkdownProps> = (props) => {
           overrides: { ...defaultOverrides },
         }}
       >
-        {children}
+        {mdChildren}
       </Markdown>
     );
   };
