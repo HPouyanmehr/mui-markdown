@@ -1,11 +1,11 @@
 {
   "name": "mui-markdown",
-  "version": "0.5.5",
+  "version": "0.5.6",
   "private": false,
   "author": {
     "name": "Hosein Pouyanmehr",
     "email": "a.h.pouyanmehr@gmail.com",
-    "url": "https://github.com/hajhosein"
+    "url": "https://github.com/HPouyanmehr"
   },
   "description": "mui-markdown uses markdown-to-jsx and MUI(formerly material-ui) to help you render MD/MDX files with MUI components.",
   "license": "MIT",
@@ -19,13 +19,13 @@
     "mui markdown",
     "material-ui markdown"
   ],
-  "homepage": "https://github.com/hajhosein/mui-markdown",
+  "homepage": "https://github.com/HPouyanmehr/mui-markdown",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hajhosein/mui-markdown"
+    "url": "https://github.com/HPouyanmehr/mui-markdown"
   },
   "bugs": {
-    "url": "https://github.com/hajhosein/mui-markdown/issues"
+    "url": "https://github.com/HPouyanmehr/mui-markdown/issues"
   },
   "peerDependencies": {
     "@emotion/react": "^11.7.1",
