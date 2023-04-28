@@ -3,6 +3,7 @@ import type { MarkdownToJSX } from 'markdown-to-jsx';
 
 // Custom Components
 import BodyOne from 'components/core/BodyOne';
+import Divider from 'components/core/Divider';
 import H1 from 'components/core/H1';
 import H2 from 'components/core/H2';
 import H3 from 'components/core/H3';
@@ -14,6 +15,7 @@ import Span from 'components/core/Span';
 const defaultOverrides: MarkdownToJSX.Overrides = {
   p: BodyOne,
   span: Span,
+  hr: Divider,
   h1: H1,
   h2: H2,
   h3: H3,
