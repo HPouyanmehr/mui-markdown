@@ -1,8 +1,0 @@
-/.github
-/.storybook
-/public
-/src/stories
-
-rollup.config.js
-tsconfig.build.json
-tsconfig.json
