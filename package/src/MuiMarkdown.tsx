@@ -3,21 +3,23 @@ import MarkdownRoot from 'markdown-to-jsx';
 // Types
 import type { FC } from 'react';
 
-// Default Overrides
-import defaultOverrides from 'overrides';
+// Custom Utilities
+import { getOptions, hasOptionsAndOverridesProps } from 'utilities/muiMarkdown';
 
 // Custom Types
-import type { Overrides } from 'types/overrides';
-export interface MuiMarkdownProps {
-  children?: string;
-  overrides?: Overrides;
-}
+import type { MuiMarkdownProps } from 'types/muiMarkdown';
 
 const MuiMarkdown: FC<MuiMarkdownProps> = (props) => {
   // Props
-  const { children = '', overrides = defaultOverrides } = props;
+  const { children = '' } = props;
 
-  return <MarkdownRoot options={{ overrides }}>{children}</MarkdownRoot>;
+  if (hasOptionsAndOverridesProps(props)) {
+    console.error(
+      "Cannot set both 'options' and 'overrides' in the MuiMarkdown component props."
+    );
+  }
+
+  return <MarkdownRoot options={getOptions(props)}>{children}</MarkdownRoot>;
 };
 
 export default MuiMarkdown;
