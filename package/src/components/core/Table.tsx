@@ -6,7 +6,7 @@ import type { TableProps as MuiTableProps } from '@mui/material';
 // Custom Types
 export interface TableProps extends MuiTableProps {}
 
-const Table = styled(MuiTable)<TableProps>();
+const Table = styled(MuiTable)<TableProps>(() => ({}));
 
 Table.defaultProps = {
   sx: { overflowX: 'auto' },

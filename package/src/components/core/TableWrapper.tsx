@@ -1,5 +1,3 @@
-import React from 'react';
-
 // Custom Core Components
 import Table from 'components/core/Table';
 import Box from 'components/core/Box';

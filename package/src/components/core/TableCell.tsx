@@ -6,7 +6,7 @@ import type { TableCellProps as MuiTableCellProps } from '@mui/material';
 // Custom Types
 export interface TableCellProps extends MuiTableCellProps {}
 
-const TableCell = styled(MuiTableCell)<TableCellProps>();
+const TableCell = styled(MuiTableCell)<TableCellProps>(() => ({}));
 
 TableCell.defaultProps = {
   sx: {

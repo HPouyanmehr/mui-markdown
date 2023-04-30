@@ -6,6 +6,6 @@ import type { BoxProps as MuiBoxProps } from '@mui/material';
 // Custom Types
 export interface BoxProps extends MuiBoxProps {}
 
-const Box = styled(MuiBox)<BoxProps>();
+const Box = styled(MuiBox)<BoxProps>(() => ({}));
 
 export default Box;

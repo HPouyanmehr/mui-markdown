@@ -6,6 +6,6 @@ import type { TableRowProps as MuiTableRowProps } from '@mui/material';
 // Custom Types
 export interface TableRowProps extends MuiTableRowProps {}
 
-const TableRow = styled(MuiTableRow)<TableRowProps>();
+const TableRow = styled(MuiTableRow)<TableRowProps>(() => ({}));
 
 export default TableRow;
