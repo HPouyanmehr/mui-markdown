@@ -2,11 +2,40 @@
   "name": "mui-markdown",
   "version": "1.0.0",
   "private": false,
+  "author": {
+    "name": "Hosein Pouyanmehr",
+    "email": "a.h.pouyanmehr@gmail.com",
+    "url": "https://github.com/HPouyanmehr"
+  },
+  "description": "mui-markdown uses markdown-to-jsx and MUI(formerly material-ui) to help you render MD/MDX files with MUI components.",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "keywords": [
+    "markdown",
+    "react markdown",
+    "mui",
+    "mui markdown",
+    "material-ui markdown"
+  ],
+  "homepage": "https://github.com/HPouyanmehr/mui-markdown",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HPouyanmehr/mui-markdown"
+  },
+  "bugs": {
+    "url": "https://github.com/HPouyanmehr/mui-markdown/issues"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "peerDependencies": {
+    "react": ">= 17.0.2",
+    "react-dom": ">= 17.0.2"
   },
   "devDependencies": {
     "@emotion/react": "^11.10.8",
@@ -19,9 +48,7 @@
     "prism-react-renderer": "^2.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4"
+    "typescript": "^4.9.5"
   },
   "eslintConfig": {
     "extends": [
