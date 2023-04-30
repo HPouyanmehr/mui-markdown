@@ -2,23 +2,23 @@
 import type { MarkdownToJSX } from 'markdown-to-jsx';
 
 // Custom Components
-import Blockquote from 'components/core/Blockquote';
-import BodyOne from 'components/core/BodyOne';
-import Divider from 'components/core/Divider';
-import H1 from 'components/core/H1';
-import H2 from 'components/core/H2';
-import H3 from 'components/core/H3';
-import H4 from 'components/core/H4';
-import H5 from 'components/core/H5';
-import H6 from 'components/core/H6';
-import InlineCode from 'components/core/InlineCode';
-import Span from 'components/core/Span';
-import TableBody from 'components/core/TableBody';
-import TableCell from 'components/core/TableCell';
-import TableFooter from 'components/core/TableFooter';
-import TableHead from 'components/core/TableHead';
-import TableRow from 'components/core/TableRow';
-import TableWrapper from 'components/core/TableWrapper';
+import Blockquote from 'components/Blockquote';
+import BodyOne from 'components/BodyOne';
+import Divider from 'components/Divider';
+import H1 from 'components/H1';
+import H2 from 'components/H2';
+import H3 from 'components/H3';
+import H4 from 'components/H4';
+import H5 from 'components/H5';
+import H6 from 'components/H6';
+import InlineCode from 'components/InlineCode';
+import Span from 'components/Span';
+import TableBody from 'components/TableBody';
+import TableCell from 'components/TableCell';
+import TableFooter from 'components/TableFooter';
+import TableHead from 'components/TableHead';
+import TableRow from 'components/TableRow';
+import TableWrapper from 'components/TableWrapper';
 
 const defaultOverrides: MarkdownToJSX.Overrides = {
   blockquote: Blockquote,

@@ -2,7 +2,7 @@
 import type { FC, ReactNode } from 'react';
 
 // Custom Core Components
-import Box from 'components/core/Box';
+import Box from 'components/Box';
 
 // Custom Types
 export interface BlockquoteProps {
