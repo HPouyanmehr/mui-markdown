@@ -6,6 +6,6 @@ import type { DividerProps as MuiDividerProps } from '@mui/material';
 // Custom Types
 export interface DividerProps extends MuiDividerProps {}
 
-const Divider = styled(MuiDivider)<DividerProps>(() => ({}));
+const Divider = styled(MuiDivider)<DividerProps>();
 
 export default Divider;

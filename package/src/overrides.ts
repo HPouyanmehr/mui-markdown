@@ -11,6 +11,12 @@ import H4 from 'components/core/H4';
 import H5 from 'components/core/H5';
 import H6 from 'components/core/H6';
 import Span from 'components/core/Span';
+import TableWrapper from 'components/core/TableWrapper';
+import TableBody from 'components/core/TableBody';
+import TableCell from 'components/core/TableCell';
+import TableFooter from 'components/core/TableFooter';
+import TableHead from 'components/core/TableHead';
+import TableRow from 'components/core/TableRow';
 
 const defaultOverrides: MarkdownToJSX.Overrides = {
   p: BodyOne,
@@ -22,6 +28,13 @@ const defaultOverrides: MarkdownToJSX.Overrides = {
   h4: H4,
   h5: H5,
   h6: H6,
+  table: TableWrapper,
+  tbody: TableBody,
+  td: TableCell,
+  tfoot: TableFooter,
+  thead: TableHead,
+  th: TableCell,
+  tr: TableRow,
 };
 
 export default defaultOverrides;

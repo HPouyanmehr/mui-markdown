@@ -1,9 +1,19 @@
 import MuiMarkdown from 'MuiMarkdown';
 
+const md = `
+
+| First Name | Last Name | Home Num | Age | Phone Number |
+|---|---|---|---|---|
+| 1 | 2 | 3 | 4 | 5 |
+|   |   |   |   |   |
+|   |   |   |   |   |
+
+`;
+
 const App = () => {
   return (
     <div>
-      <MuiMarkdown>{`---`}</MuiMarkdown>
+      <MuiMarkdown>{md}</MuiMarkdown>
     </div>
   );
 };
