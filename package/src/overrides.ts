@@ -3,6 +3,7 @@ import type { MarkdownToJSX } from 'markdown-to-jsx';
 
 // Custom Components
 import BodyOne from 'components/core/BodyOne';
+import Blockquote from 'components/core/Blockquote';
 import Divider from 'components/core/Divider';
 import H1 from 'components/core/H1';
 import H2 from 'components/core/H2';
@@ -19,6 +20,7 @@ import TableHead from 'components/core/TableHead';
 import TableRow from 'components/core/TableRow';
 
 const defaultOverrides: MarkdownToJSX.Overrides = {
+  blockquote: Blockquote,
   p: BodyOne,
   span: Span,
   hr: Divider,

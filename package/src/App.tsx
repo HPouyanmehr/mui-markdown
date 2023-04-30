@@ -2,11 +2,11 @@ import MuiMarkdown from 'MuiMarkdown';
 
 const md = `
 
-| First Name | Last Name | Home Num | Age | Phone Number |
-|---|---|---|---|---|
-| 1 | 2 | 3 | 4 | 5 |
-|   |   |   |   |   |
-|   |   |   |   |   |
+> This is a blockquote...
+
+Normal text
+
+> این یک نقل قول است...
 
 `;
 
