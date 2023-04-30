@@ -1,6 +1,6 @@
 import MuiMarkdown from 'MuiMarkdown';
 
-const md = '`mui-markdown`';
+const md = '[Contenido](https://contenidojs.com)';
 
 const App = () => {
   return (

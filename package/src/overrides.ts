@@ -12,6 +12,7 @@ import H4 from 'components/H4';
 import H5 from 'components/H5';
 import H6 from 'components/H6';
 import InlineCode from 'components/InlineCode';
+import Link from 'components/Link';
 import Span from 'components/Span';
 import TableBody from 'components/TableBody';
 import TableCell from 'components/TableCell';
@@ -21,6 +22,7 @@ import TableRow from 'components/TableRow';
 import TableWrapper from 'components/TableWrapper';
 
 const defaultOverrides: MarkdownToJSX.Overrides = {
+  a: Link,
   blockquote: Blockquote,
   code: InlineCode,
   h1: H1,
