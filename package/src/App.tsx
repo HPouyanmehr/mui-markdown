@@ -1,14 +1,6 @@
 import MuiMarkdown from 'MuiMarkdown';
 
-const md = `
-
-> This is a blockquote...
-
-Normal text
-
-> این یک نقل قول است...
-
-`;
+const md = '`mui-markdown`';
 
 const App = () => {
   return (
