@@ -1,8 +1,10 @@
 // Custom Types
 import type { Options, Overrides } from 'types/markdown';
+import type { PrismTheme } from 'types/prism';
 
 export interface MuiMarkdownRootProps {
   children?: string;
+  prismTheme?: PrismTheme;
 }
 
 export interface MuiMarkdownWithOverrides extends MuiMarkdownRootProps {

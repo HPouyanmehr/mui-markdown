@@ -1,5 +1,5 @@
 // Default Overrides
-import defaultOverrides from 'overrides';
+import { getOverrides } from 'overrides';
 
 // Custom Types
 import { Options } from 'types/markdown';
@@ -16,6 +16,8 @@ export const hasOptionsAndOverridesProps = (
 
 export const getOptions = (props: MuiMarkdownProps): Options => {
   const { options, overrides } = props;
+
+  const defaultOverrides = getOverrides({ theme: props.prismTheme });
 
   if (options) {
     if (options.overrides !== undefined) return options;

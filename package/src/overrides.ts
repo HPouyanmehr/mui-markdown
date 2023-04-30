@@ -1,5 +1,6 @@
-// Types
-import type { MarkdownToJSX } from 'markdown-to-jsx';
+// Custom Types
+import type { Overrides } from 'types/markdown';
+import type { PrismTheme } from 'types/prism';
 
 // Custom Components
 import Blockquote from 'components/Blockquote';
@@ -21,7 +22,7 @@ import TableHead from 'components/TableHead';
 import TableRow from 'components/TableRow';
 import TableWrapper from 'components/TableWrapper';
 
-const defaultOverrides: MarkdownToJSX.Overrides = {
+export const defaultOverrides: Overrides = {
   a: Link,
   blockquote: Blockquote,
   code: InlineCode,
@@ -43,4 +44,10 @@ const defaultOverrides: MarkdownToJSX.Overrides = {
   tr: TableRow,
 };
 
-export default defaultOverrides;
+export const getOverrides = ({ theme }: { theme?: PrismTheme }): Overrides => ({
+  ...defaultOverrides,
+  code: {
+    component: InlineCode,
+    props: { theme },
+  },
+});
