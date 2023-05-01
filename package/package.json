@@ -37,7 +37,8 @@
     "url": "https://github.com/HPouyanmehr/mui-markdown/issues"
   },
   "scripts": {
-    "build-lib": "rollup -c"
+    "build-lib": "rollup -c",
+    "start": "react-scripts start"
   },
   "peerDependencies": {
     "react": ">= 17.0.2",
@@ -46,21 +47,24 @@
   "devDependencies": {
     "@emotion/react": "^11.10.8",
     "@emotion/styled": "^11.10.8",
+    "@mdx-js/loader": "^2.3.0",
+    "@mdx-js/react": "^2.3.0",
     "@mui/material": "^5.12.2",
-    "@types/node": "^16.18.25",
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.1",
-    "markdown-to-jsx": "^7.2.0",
-    "prism-react-renderer": "^2.0.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "@rollup/plugin-babel": "^6.0.3",
     "@rollup/plugin-commonjs": "^24.0.1",
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@rollup/plugin-terser": "^0.4.0",
+    "@types/node": "^16.18.25",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.1",
+    "markdown-to-jsx": "^7.2.0",
     "postcss": "^8.4.21",
     "postcss-import": "^15.1.0",
     "postcss-preset-env": "^8.2.0",
+    "prism-react-renderer": "^2.0.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "^5.0.1",
     "rollup": "^2.79.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",

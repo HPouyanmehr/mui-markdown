@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 // Types
-import type { FC } from 'react';
+import type { CSSProperties, FC } from 'react';
 
 // Custom Core Components
 import Box from 'components/Box';
@@ -12,19 +12,26 @@ import type { PrismTheme } from 'types/prism';
 export interface PreBlockProps {
   children: React.ReactNode | any;
   theme?: PrismTheme;
+  styles?: CSSProperties;
 }
 
 const PreBlock: FC<PreBlockProps> = (props) => {
-  const { children, theme } = props;
+  const { children, theme, styles } = props;
 
-  if (children && children.type && children.type === 'code') {
+  if (
+    children &&
+    children.props &&
+    children.props.className &&
+    children.props.className.startsWith('lang-')
+  ) {
+    const code = children.props.children;
     const lang = children.props.className
       ? children.props.className.replace('lang-', '')
       : 'tsx';
 
     return (
-      <CodeBlock language={lang} theme={theme}>
-        {children.props.children}
+      <CodeBlock language={lang} theme={theme} styles={styles}>
+        {code}
       </CodeBlock>
     );
   }

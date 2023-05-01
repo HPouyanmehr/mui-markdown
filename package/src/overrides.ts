@@ -1,4 +1,5 @@
 // Custom Types
+import type { CSSProperties } from 'react';
 import type { Overrides } from 'types/markdown';
 import type { PrismTheme } from 'types/prism';
 
@@ -46,10 +47,16 @@ export const defaultOverrides: Overrides = {
   tr: TableRow,
 };
 
-export const getOverrides = ({ theme }: { theme?: PrismTheme }): Overrides => ({
+export const getOverrides = ({
+  theme,
+  styles,
+}: {
+  theme?: PrismTheme;
+  styles?: CSSProperties;
+}): Overrides => ({
   ...defaultOverrides,
-  code: {
-    component: InlineCode,
-    props: { theme },
+  pre: {
+    component: PreBlock,
+    props: { theme, styles },
   },
 });

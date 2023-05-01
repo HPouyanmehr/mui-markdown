@@ -17,7 +17,10 @@ export const hasOptionsAndOverridesProps = (
 export const getOptions = (props: MuiMarkdownProps): Options => {
   const { options, overrides } = props;
 
-  const defaultOverrides = getOverrides({ theme: props.prismTheme });
+  const defaultOverrides = getOverrides({
+    theme: props.prismTheme,
+    styles: props.codeWrapperStyles,
+  });
 
   if (options) {
     if (options.overrides !== undefined) return options;

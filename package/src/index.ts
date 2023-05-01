@@ -8,3 +8,6 @@ export { defaultOverrides, getOverrides } from 'overrides';
 
 // MUI Markdown
 export { default as MuiMarkdown } from 'MuiMarkdown';
+
+// Themes
+export { themes } from 'prism-react-renderer';
