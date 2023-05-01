@@ -4,7 +4,7 @@ import { Highlight, themes } from 'prism-react-renderer';
 import type { CSSProperties, FC } from 'react';
 
 // Custom Types
-import type { PrismTheme } from 'types/prism';
+import type { PrismTheme } from '../types/prism';
 export interface CodeBlockProps {
   children?: string;
   language?: string;

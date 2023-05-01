@@ -2,10 +2,10 @@
 import type { FC } from 'react';
 
 // Custom Core Components
-import Typography from 'components/Typography';
+import Typography from './Typography';
 
 // Custom Types
-import type { TypographyProps } from 'components/Typography';
+import type { TypographyProps } from './Typography';
 
 const H5: FC<TypographyProps> = (props) => {
   // Props

@@ -4,10 +4,13 @@ import MarkdownRoot from 'markdown-to-jsx';
 import type { FC } from 'react';
 
 // Custom Utilities
-import { getOptions, hasOptionsAndOverridesProps } from 'utilities/muiMarkdown';
+import {
+  getOptions,
+  hasOptionsAndOverridesProps,
+} from './utilities/muiMarkdown';
 
 // Custom Types
-import type { MuiMarkdownProps } from 'types/muiMarkdown';
+import type { MuiMarkdownProps } from './types/muiMarkdown';
 
 const MuiMarkdown: FC<MuiMarkdownProps> = (props) => {
   // Props

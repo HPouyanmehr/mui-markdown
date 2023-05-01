@@ -4,11 +4,11 @@ import * as React from 'react';
 import type { CSSProperties, FC } from 'react';
 
 // Custom Core Components
-import Box from 'components/Box';
-import CodeBlock from 'components/CodeBlock';
+import Box from './Box';
+import CodeBlock from './CodeBlock';
 
 // Custom Types
-import type { PrismTheme } from 'types/prism';
+import type { PrismTheme } from '../types/prism';
 export interface PreBlockProps {
   children: React.ReactNode | any;
   theme?: PrismTheme;

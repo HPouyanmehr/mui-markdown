@@ -1,12 +1,12 @@
 // Custom Core Components
-import Table from 'components/Table';
-import Box from 'components/Box';
+import Table from './Table';
+import Box from './Box';
 
 // Custom Utilities
-import getScrollbarStyles from 'utilities/scrollbar';
+import getScrollbarStyles from '../utilities/scrollbar';
 
 // Custom Types
-import type { TableProps } from 'components/Table';
+import type { TableProps } from './Table';
 
 const TableWrapper = (props: TableProps) => {
   const { children, sx, ...otherProps } = props;

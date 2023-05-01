@@ -1,13 +1,13 @@
 // Default Overrides
-import { getOverrides } from 'overrides';
+import { getOverrides } from '../overrides';
 
 // Custom Types
-import { Options } from 'types/markdown';
+import { Options } from '../types/markdown';
 import type {
   MuiMarkdownProps,
   MuiMarkdownWithOptions,
   MuiMarkdownWithOverrides,
-} from 'types/muiMarkdown';
+} from '../types/muiMarkdown';
 
 export const hasOptionsAndOverridesProps = (
   props: MuiMarkdownProps
