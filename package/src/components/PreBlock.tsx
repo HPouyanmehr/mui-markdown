@@ -1,5 +1,8 @@
 import * as React from 'react';
 
+// Types
+import type { FC } from 'react';
+
 // Custom Core Components
 import Box from 'components/Box';
 import CodeBlock from 'components/CodeBlock';
@@ -11,7 +14,7 @@ export interface PreBlockProps {
   theme?: PrismTheme;
 }
 
-const PreBlock: React.FunctionComponent<PreBlockProps> = (props) => {
+const PreBlock: FC<PreBlockProps> = (props) => {
   const { children, theme } = props;
 
   if (children && children.type && children.type === 'code') {

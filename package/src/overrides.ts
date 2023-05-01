@@ -14,6 +14,7 @@ import H5 from 'components/H5';
 import H6 from 'components/H6';
 import InlineCode from 'components/InlineCode';
 import Link from 'components/Link';
+import PreBlock from 'components/PreBlock';
 import Span from 'components/Span';
 import TableBody from 'components/TableBody';
 import TableCell from 'components/TableCell';
@@ -34,6 +35,7 @@ export const defaultOverrides: Overrides = {
   h6: H6,
   hr: Divider,
   p: BodyOne,
+  pre: PreBlock,
   span: Span,
   table: TableWrapper,
   tbody: TableBody,
