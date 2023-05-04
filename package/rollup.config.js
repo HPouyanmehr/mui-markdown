@@ -24,7 +24,15 @@ const config = [
         exports: 'named',
       },
     ],
-    external: ['react', 'react-dom'],
+    external: [
+      'react',
+      'react-dom',
+      '@mui/material',
+      '@emotion/react',
+      '@emotion/styled',
+      'markdown-to-jsx',
+      'prism-react-renderer',
+    ],
     plugins: [
       external(),
       resolve(),
