@@ -8,15 +8,22 @@ import Box from './Box';
 import CodeBlock from './CodeBlock';
 
 // Custom Types
-import type { PrismTheme } from '../types/prism';
+import type {
+  HighlightComponent,
+  HighlightThemes,
+  PrismTheme,
+} from '../types/highlight';
+import SimpleCodeBlock from './SimpleCodeBlock';
 export interface PreBlockProps {
   children: React.ReactNode | any;
+  Highlight?: HighlightComponent;
+  themes?: HighlightThemes;
   theme?: PrismTheme;
   styles?: CSSProperties;
 }
 
 const PreBlock: FC<PreBlockProps> = (props) => {
-  const { children, theme, styles } = props;
+  const { children, Highlight, themes, theme, styles } = props;
 
   if (
     children &&
@@ -29,11 +36,21 @@ const PreBlock: FC<PreBlockProps> = (props) => {
       ? children.props.className.replace('lang-', '')
       : 'tsx';
 
-    return (
-      <CodeBlock language={lang} theme={theme} styles={styles}>
-        {code}
-      </CodeBlock>
-    );
+    if (Highlight && themes) {
+      return (
+        <CodeBlock
+          Highlight={Highlight}
+          themes={themes}
+          language={lang}
+          theme={theme}
+          styles={styles}
+        >
+          {code}
+        </CodeBlock>
+      );
+    }
+
+    return <SimpleCodeBlock styles={styles}>{code}</SimpleCodeBlock>;
   }
   return (
     <Box component='pre' sx={{ whiteSpace: 'pre-wrap' }}>

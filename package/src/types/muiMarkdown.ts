@@ -1,12 +1,18 @@
 // Custom Types
 import type { CSSProperties } from 'react';
 import type { Options, Overrides } from '../types/markdown';
-import type { PrismTheme } from '../types/prism';
+import type {
+  HighlightComponent,
+  HighlightThemes,
+  PrismTheme,
+} from './highlight';
 
 export interface MuiMarkdownRootProps {
   children?: string;
   prismTheme?: PrismTheme;
   codeWrapperStyles?: CSSProperties;
+  Highlight?: HighlightComponent;
+  themes?: HighlightThemes;
 }
 
 export interface MuiMarkdownWithOverrides extends MuiMarkdownRootProps {

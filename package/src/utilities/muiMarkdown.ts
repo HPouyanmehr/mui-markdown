@@ -20,6 +20,8 @@ export const getOptions = (props: MuiMarkdownProps): Options => {
   const defaultOverrides = getOverrides({
     theme: props.prismTheme,
     styles: props.codeWrapperStyles,
+    Highlight: props.Highlight,
+    themes: props.themes,
   });
 
   if (options) {

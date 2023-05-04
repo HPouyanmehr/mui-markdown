@@ -1,11 +1,15 @@
-import { Highlight, themes } from 'prism-react-renderer';
-
 // Types
 import type { CSSProperties, FC } from 'react';
 
 // Custom Types
-import type { PrismTheme } from '../types/prism';
+import type {
+  HighlightComponent,
+  HighlightThemes,
+  PrismTheme,
+} from '../types/highlight';
 export interface CodeBlockProps {
+  Highlight: HighlightComponent;
+  themes: HighlightThemes;
   children?: string;
   language?: string;
   theme?: PrismTheme;
@@ -14,10 +18,14 @@ export interface CodeBlockProps {
 
 const CodeBlock: FC<CodeBlockProps> = (props) => {
   // Props
-  const { children = '', language = 'tsx', theme = themes.vsDark } = props;
+  const { children = '', language = 'tsx', Highlight, themes, theme } = props;
 
   return (
-    <Highlight code={children} language={language} theme={theme}>
+    <Highlight
+      code={children}
+      language={language}
+      theme={theme ? theme : themes.vsDark}
+    >
       {({ style, tokens, getLineProps, getTokenProps }) => (
         <pre
           style={{

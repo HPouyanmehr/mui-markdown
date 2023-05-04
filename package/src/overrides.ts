@@ -1,7 +1,11 @@
 // Custom Types
 import type { CSSProperties } from 'react';
 import type { Overrides } from './types/markdown';
-import type { PrismTheme } from './types/prism';
+import type {
+  HighlightComponent,
+  HighlightThemes,
+  PrismTheme,
+} from './types/highlight';
 
 // Custom Components
 import Blockquote from './components/Blockquote';
@@ -50,13 +54,17 @@ export const defaultOverrides: Overrides = {
 export const getOverrides = ({
   theme,
   styles,
+  Highlight,
+  themes,
 }: {
   theme?: PrismTheme;
   styles?: CSSProperties;
+  Highlight?: HighlightComponent;
+  themes?: HighlightThemes;
 }): Overrides => ({
   ...defaultOverrides,
   pre: {
     component: PreBlock,
-    props: { theme, styles },
+    props: { theme, styles, Highlight, themes },
   },
 });
