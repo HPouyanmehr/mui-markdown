@@ -13,12 +13,12 @@ const InlineCode: FC<InlineCodeProps> = (props) => {
   const { children } = props;
 
   // Hooks
-  const { palette } = useTheme();
+  // const { palette } = useTheme();
 
   return (
     <code
       style={{
-        backgroundColor: darken(palette.background.default, 0.07),
+        // backgroundColor: darken(palette.background.default, 0.07),
         borderRadius: '0.25rem',
         padding: '0.25rem 0.5rem',
       }}
