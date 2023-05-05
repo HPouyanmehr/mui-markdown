@@ -39,10 +39,13 @@ Props available for `MuiMarkdown` component:
 | Name              | Type                    | Default          | Optional or Mandatory |
 | ----------------- | ----------------------- | ---------------- | --------------------- |
 | key               | React.key               | -                | **optional**          |
+| children          | string                  | -                | **optional**          |
 | overrides         | MarkdownToJSX.Overrides | defaultOverrides | **optional**          |
 | options           | MarkdownToJSX.Options   | -                | **optional**          |
 | codeWrapperStyles | CSSProperties           | -                | **optional**          |
 | prismTheme        | PrismTheme              | vsDark           | **optional**          |
+| Highlight         | HighlightComponent      | -                | **optional**          |
+| themes            | HighlightThemes         | -                | **optional**          |
 
 Note: You cannot use overrides and options at the same time.
 
@@ -184,17 +187,54 @@ You can pass your desired styles for the syntax highlighter component. These are
   ...
 ```
 
-### prismTheme
+### Syntax Highlight
 
-mui-markdown uses [prism-react-renderer](https://github.com/FormidableLabs/prism-react-renderer) to highlight code blocks. With this property you can change the highlight theme. You can import the `themes` from `mui-markdown` to override the default theme:
+`mui-markdown` uses [prism-react-renderer](https://github.com/FormidableLabs/prism-react-renderer) to highlight code blocks. As this is an optional dependencies, you need to install it if you want to have a syntax highlighter. So to highlight your code:
+
+- First install `prism-react-renderer`
+
+```bash
+# with npm
+npm i prism-react-renderer
+
+# with yarn
+yarn add prism-react-renderer
+```
+
+- Then pass the `Highlight` and the `themes` to the `MuiMarkdown` component
 
 ```tsx
 import React from 'react';
-import { MuiMarkdown, themes } from 'mui-markdown';
+import { MuiMarkdown } from 'mui-markdown';
+import { Highlight, themes } from 'prism-react-renderer';
 
 const App = () => {
   return (
-    <MuiMarkdown prismTheme={themes.github}>{`# Hello markdown!`}</MuiMarkdown>
+    <MuiMarkdown
+      Highlight={Highlight}
+      themes={themes}
+      prismTheme={themes.github}
+    >{`# Hello markdown!`}</MuiMarkdown>
+  );
+};
+
+export default App;
+```
+
+With the `prismTheme` property you can change the highlight theme.
+
+```tsx
+import React from 'react';
+import { MuiMarkdown } from 'mui-markdown';
+import { Highlight, themes } from 'prism-react-renderer';
+
+const App = () => {
+  return (
+    <MuiMarkdown
+      Highlight={Highlight}
+      themes={themes}
+      prismTheme={themes.github}
+    >{`# Hello markdown!`}</MuiMarkdown>
   );
 };
 
