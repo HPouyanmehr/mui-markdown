@@ -25,7 +25,7 @@ const MuiMarkdown: FC<MuiMarkdownProps> = (props) => {
     );
   }
 
-  return <MarkdownRoot>{children}</MarkdownRoot>;
+  return <MarkdownRoot options={options}>{children}</MarkdownRoot>;
 };
 
 export default MuiMarkdown;
