@@ -8,7 +8,7 @@ import type {
 } from './highlight';
 
 export interface MuiMarkdownRootProps {
-  children?: string;
+  children?: string | null;
   prismTheme?: PrismTheme;
   codeWrapperStyles?: CSSProperties;
   Highlight?: HighlightComponent;
