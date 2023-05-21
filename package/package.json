@@ -1,6 +1,6 @@
 {
   "name": "mui-markdown",
-  "version": "1.0.2",
+  "version": "1.0.1",
   "private": false,
   "author": {
     "name": "Hosein Pouyanmehr",
@@ -9,10 +9,10 @@
   },
   "description": "mui-markdown uses markdown-to-jsx and MUI(formerly material-ui) to help you render MD/MDX files with MUI components.",
   "license": "MIT",
+  "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
-  "type": "module",
   "exports": {
     ".": {
       "require": "./dist/index.js",
@@ -44,7 +44,7 @@
     "@emotion/react": "^11.10.8",
     "@emotion/styled": "^11.10.8",
     "@mui/material": "^5.12.2",
-    "markdown-to-jsx": "7.1.9",
+    "markdown-to-jsx": "^7.1.6",
     "react": ">= 17.0.2",
     "react-dom": ">= 17.0.2"
   },
@@ -64,7 +64,7 @@
     "@types/node": "^16.18.25",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.1",
-    "markdown-to-jsx": "7.1.9",
+    "markdown-to-jsx": "^7.1.6",
     "postcss-import": "^15.1.0",
     "postcss-preset-env": "^8.2.0",
     "prism-react-renderer": "^2.0.3",
