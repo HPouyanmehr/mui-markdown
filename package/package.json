@@ -1,6 +1,6 @@
 {
   "name": "mui-markdown",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": false,
   "author": {
     "name": "Hosein Pouyanmehr",
@@ -52,6 +52,8 @@
     "prism-react-renderer": "^2.0.3"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.22.5",
+    "@babel/preset-react": "^7.22.5",
     "@emotion/react": "^11.10.8",
     "@emotion/styled": "^11.10.8",
     "@mdx-js/loader": "^2.3.0",
