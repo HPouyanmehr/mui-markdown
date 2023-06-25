@@ -8,7 +8,7 @@ import type {
   PrismTheme,
 } from '../types/highlight';
 export interface CodeBlockProps {
-  showLineNumbers?: boolean | null;
+  hideLineNumbers?: boolean;
   Highlight: HighlightComponent;
   themes: HighlightThemes;
   children?: string;
@@ -19,7 +19,14 @@ export interface CodeBlockProps {
 
 const CodeBlock: FC<CodeBlockProps> = (props) => {
   // Props
-  const { children = '', language = 'tsx', Highlight, themes, theme, showLineNumbers = true } = props;
+  const {
+    children = '',
+    language = 'tsx',
+    Highlight,
+    themes,
+    theme,
+    hideLineNumbers,
+  } = props;
 
   return (
     <Highlight
@@ -39,7 +46,7 @@ const CodeBlock: FC<CodeBlockProps> = (props) => {
         >
           {tokens.map((line, i) => (
             <div key={i} {...getLineProps({ line })}>
-              {showLineNumbers && (<span>{i + 1} </span>)}
+              {!hideLineNumbers && <span>{i + 1} </span>}
               {line.map((token, key) => (
                 <span key={key} {...getTokenProps({ token })} />
               ))}

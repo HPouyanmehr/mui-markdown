@@ -6,6 +6,7 @@ import type { CSSProperties, FC } from 'react';
 // Custom Core Components
 import Box from './Box';
 import CodeBlock from './CodeBlock';
+import SimpleCodeBlock from './SimpleCodeBlock';
 
 // Custom Types
 import type {
@@ -13,9 +14,8 @@ import type {
   HighlightThemes,
   PrismTheme,
 } from '../types/highlight';
-import SimpleCodeBlock from './SimpleCodeBlock';
 export interface PreBlockProps {
-  showLineNumbers?: boolean | null;
+  hideLineNumbers?: boolean;
   children: React.ReactNode | any;
   Highlight?: HighlightComponent;
   themes?: HighlightThemes;
@@ -24,7 +24,7 @@ export interface PreBlockProps {
 }
 
 const PreBlock: FC<PreBlockProps> = (props) => {
-  const { children, Highlight, themes, theme, styles, showLineNumbers } = props;
+  const { children, Highlight, themes, theme, styles, hideLineNumbers } = props;
 
   if (
     children &&
@@ -40,12 +40,12 @@ const PreBlock: FC<PreBlockProps> = (props) => {
     if (Highlight && themes) {
       return (
         <CodeBlock
-              Highlight={Highlight}
-              themes={themes}
-              language={lang}
-              theme={theme}
-              styles={styles}
-              showLineNumbers={showLineNumbers}
+          Highlight={Highlight}
+          themes={themes}
+          language={lang}
+          theme={theme}
+          styles={styles}
+          hideLineNumbers={hideLineNumbers}
         >
           {code}
         </CodeBlock>
