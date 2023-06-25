@@ -46,6 +46,7 @@ Props available for `MuiMarkdown` component:
 | prismTheme        | PrismTheme              | vsDark           | **optional**          |
 | Highlight         | HighlightComponent      | -                | **optional**          |
 | themes            | HighlightThemes         | -                | **optional**          |
+| hideLineNumbers   | boolean                 | false            | **optional**          |
 
 Note: You cannot use overrides and options at the same time.
 
@@ -65,7 +66,7 @@ const App = () => {
   return (
     <MuiMarkdown
       overrides={{
-        ...getOverrides(), // This will keep the other default overrides.
+        ...getOverrides({}), // This will keep the other default overrides.
         h1: {
           component: 'p',
           props: {
@@ -214,7 +215,9 @@ const App = () => {
       Highlight={Highlight}
       themes={themes}
       prismTheme={themes.github}
-    >{`# Hello markdown!`}</MuiMarkdown>
+    >
+      {`# Hello markdown!`}
+    </MuiMarkdown>
   );
 };
 
@@ -234,7 +237,32 @@ const App = () => {
       Highlight={Highlight}
       themes={themes}
       prismTheme={themes.github}
-    >{`# Hello markdown!`}</MuiMarkdown>
+    >
+      {`# Hello markdown!`}
+    </MuiMarkdown>
+  );
+};
+
+export default App;
+```
+
+Also to disable the line numbers in the code block you can use the `hideLineNumbers`.
+
+```tsx
+import React from 'react';
+import { MuiMarkdown } from 'mui-markdown';
+import { Highlight, themes } from 'prism-react-renderer';
+
+const App = () => {
+  return (
+    <MuiMarkdown
+      Highlight={Highlight}
+      themes={themes}
+      prismTheme={themes.github}
+      hideLineNumbers
+    >
+      {`# Hello markdown!`}
+    </MuiMarkdown>
   );
 };
 
