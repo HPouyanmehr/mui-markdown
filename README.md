@@ -46,6 +46,7 @@ Props available for `MuiMarkdown` component:
 | prismTheme        | PrismTheme              | vsDark           | **optional**          |
 | Highlight         | HighlightComponent      | -                | **optional**          |
 | themes            | HighlightThemes         | -                | **optional**          |
+| showLineNumbers   | boolean                 | true             | **optional**          |
 
 Note: You cannot use overrides and options at the same time.
 
@@ -65,7 +66,7 @@ const App = () => {
   return (
     <MuiMarkdown
       overrides={{
-        ...getOverrides(), // This will keep the other default overrides.
+        ...getOverrides({}), // This will keep the other default overrides.
         h1: {
           component: 'p',
           props: {
@@ -92,7 +93,7 @@ const App = () => {
   return (
     <MuiMarkdown
       overrides={{
-        ...getOverrides(), // This will keep the other default overrides.
+        ...getOverrides({}), // This will keep the other default overrides.
         h1: {
           component: 'p',
           props: {
@@ -122,7 +123,7 @@ const App = () => {
   return (
     <MuiMarkdown
       overrides={{
-        ...getOverrides(), // This will keep the other default overrides.
+        ...getOverrides({}), // This will keep the other default overrides.
         h1: {
           component: CustomTypography,
           props: {
@@ -152,7 +153,43 @@ const App = () => {
   return (
     <MuiMarkdown
       overrides={{
-        ...getOverrides(), // This will keep the other default overrides.
+        ...getOverrides({}), // This will keep the other default overrides.
+        h1: {
+          component: CustomTypography,
+          props: {
+            // custom props
+          } as CustomTypographyProps,
+        },
+      }}
+    >
+      {`# Hello markdown!`}
+    </MuiMarkdown>
+  );
+};
+
+export default App;
+```
+
+**An example of override that further customizes code blocks:**
+
+TS and TSX:
+
+```tsx
+import React from 'react';
+import { MuiMarkdown, getOverrides } from 'mui-markdown';
+import { Highlight, themes, Prism } from 'prism-react-renderer';
+import CustomTypography, {
+  CustomTypographyProps,
+} from './components/CustomTypography';
+
+(typeof global !== "undefined" ? global : window).Prism = Prism
+require("prismjs/components/prism-python")
+
+const App = () => {
+  return (
+    <MuiMarkdown
+      overrides={{
+        ...getOverrides({ Highlight, themes, theme: themes.vsDark, showLineNumbers: false })
         h1: {
           component: CustomTypography,
           props: {
