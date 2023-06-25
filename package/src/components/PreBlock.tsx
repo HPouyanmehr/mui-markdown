@@ -15,6 +15,7 @@ import type {
 } from '../types/highlight';
 import SimpleCodeBlock from './SimpleCodeBlock';
 export interface PreBlockProps {
+  showLineNumbers?: boolean | null;
   children: React.ReactNode | any;
   Highlight?: HighlightComponent;
   themes?: HighlightThemes;
@@ -23,7 +24,7 @@ export interface PreBlockProps {
 }
 
 const PreBlock: FC<PreBlockProps> = (props) => {
-  const { children, Highlight, themes, theme, styles } = props;
+  const { children, Highlight, themes, theme, styles, showLineNumbers } = props;
 
   if (
     children &&
@@ -39,11 +40,12 @@ const PreBlock: FC<PreBlockProps> = (props) => {
     if (Highlight && themes) {
       return (
         <CodeBlock
-          Highlight={Highlight}
-          themes={themes}
-          language={lang}
-          theme={theme}
-          styles={styles}
+              Highlight={Highlight}
+              themes={themes}
+              language={lang}
+              theme={theme}
+              styles={styles}
+              showLineNumbers={showLineNumbers}
         >
           {code}
         </CodeBlock>

@@ -52,11 +52,13 @@ export const defaultOverrides: Overrides = {
 };
 
 export const getOverrides = ({
+  showLineNumbers,
   theme,
   styles,
   Highlight,
   themes,
 }: {
+  showLineNumbers?: boolean | null,
   theme?: PrismTheme;
   styles?: CSSProperties;
   Highlight?: HighlightComponent;
@@ -65,6 +67,6 @@ export const getOverrides = ({
   ...defaultOverrides,
   pre: {
     component: PreBlock,
-    props: { theme, styles, Highlight, themes },
+    props: { theme, styles, Highlight, themes, showLineNumbers },
   },
 });
