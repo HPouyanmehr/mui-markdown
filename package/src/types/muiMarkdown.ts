@@ -8,6 +8,7 @@ import type {
 } from './highlight';
 
 export interface MuiMarkdownRootProps {
+  showLineNumbers?: boolean | null;
   children?: string | null;
   prismTheme?: PrismTheme;
   codeWrapperStyles?: CSSProperties;
