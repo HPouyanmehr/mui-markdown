@@ -1,4 +1,4 @@
-[Support This Project](https://www.hpouyanmehr.com/backers#donate)
+[![Support mui-markdown](https://github.com/HPouyanmehr/mui-markdown/raw/main/.github/assets/support-mui-markdown.png 'Click to support')](https://www.paypal.com/donate/?hosted_button_id=SW7L8MAT9BRA6)
 
 ## About
 
