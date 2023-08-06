@@ -8,8 +8,4 @@ export interface TableProps extends MuiTableProps {}
 
 const Table = styled(MuiTable)<TableProps>(() => ({}));
 
-Table.defaultProps = {
-  sx: { overflowX: 'auto' },
-};
-
 export default Table;

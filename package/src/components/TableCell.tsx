@@ -6,12 +6,8 @@ import type { TableCellProps as MuiTableCellProps } from '@mui/material';
 // Custom Types
 export interface TableCellProps extends MuiTableCellProps {}
 
-const TableCell = styled(MuiTableCell)<TableCellProps>(() => ({}));
-
-TableCell.defaultProps = {
-  sx: {
-    whiteSpace: 'nowrap',
-  },
-};
+const TableCell = styled(MuiTableCell)<TableCellProps>(() => ({
+  whiteSpace: 'nowrap',
+}));
 
 export default TableCell;
