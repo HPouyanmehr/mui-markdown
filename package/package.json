@@ -54,7 +54,7 @@
     "@emotion/react": "^11.10.8",
     "@emotion/styled": "^11.10.8",
     "@mui/material": "^5.12.2",
-    "markdown-to-jsx": "^7.1.6",
+    "markdown-to-jsx": "^7.3.0",
     "react": ">= 17.0.2",
     "react-dom": ">= 17.0.2"
   },
@@ -76,7 +76,7 @@
     "@types/node": "^16.18.25",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.1",
-    "markdown-to-jsx": "^7.2.1",
+    "markdown-to-jsx": "^7.3.0",
     "postcss-import": "^15.1.0",
     "postcss-preset-env": "^8.2.0",
     "prism-react-renderer": "^2.0.3",
