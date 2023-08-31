@@ -56,7 +56,7 @@ Props available for `MuiMarkdown` component:
 | themes            | HighlightThemes         | -                | **optional**          |
 | hideLineNumbers   | boolean                 | false            | **optional**          |
 
-> **NOTE:** You cannot use overrides and options at the same time.
+**NOTE:** You cannot use overrides and options at the same time.
 
 ### overrides
 
@@ -277,7 +277,7 @@ const App = () => {
 export default App;
 ```
 
-If you want to use Syntax Highlight with `options` then pass `Highlight`, `themes` and `themes.github` in `getOverrides` function.
+When you use overrides, you can have the syntax highlight by passing the `Highlight`, `themes`, and `themes.github` (or your favorite one) to the `getOverrides` function.
 
 ```tsx
 import React from 'react';
