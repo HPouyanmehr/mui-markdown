@@ -1,10 +1,4 @@
-[![Support mui-markdown](https://github.com/HPouyanmehr/mui-markdown/raw/main/.github/assets/support-mui-markdown.png 'Click to support')](https://www.paypal.com/donate/?hosted_button_id=SW7L8MAT9BRA6)
-
-## Backers
-
- <a href='https://github.com/alyphen'> 
-  <img src="https://github.com/alyphen.png" alt="mui-markdown backer" width='36px' height='36px' style="border-radius: 50%">
- </a>
+[![Support mui-markdown](./.github/assets/support-mui-markdown.png 'Click to support')](https://www.paypal.com/donate/?hosted_button_id=SW7L8MAT9BRA6)
 
 ## About
 
@@ -56,7 +50,7 @@ Props available for `MuiMarkdown` component:
 | themes            | HighlightThemes         | -                | **optional**          |
 | hideLineNumbers   | boolean                 | false            | **optional**          |
 
-Note: You cannot use overrides and options at the same time.
+**NOTE:** You cannot use overrides and options at the same time.
 
 ### overrides
 
@@ -276,3 +270,37 @@ const App = () => {
 
 export default App;
 ```
+
+When you use overrides, you can have the syntax highlight by passing the `Highlight`, `themes`, and `themes.github` (or your favorite one) to the `getOverrides` function.
+
+```tsx
+import React from 'react';
+import { MuiMarkdown, getOverrides } from 'mui-markdown';
+import { Highlight, themes } from 'prism-react-renderer';
+
+const App = () => {
+  return (
+    <MuiMarkdown
+      overrides={{
+        ...getOverrides({ Highlight, themes, theme: themes.github }), // This will keep the other default overrides.
+        h1: {
+          component: 'p',
+          props: {
+            style: { color: 'red' },
+          },
+        },
+      }}
+    >
+      {`# Hello markdown!`}
+    </MuiMarkdown>
+  );
+};
+
+export default App;
+```
+
+## Backers
+
+ <a href='https://github.com/alyphen'> 
+  <img src="https://github.com/alyphen.png" alt="mui-markdown backer" width='36px' height='36px' style="border-radius: 50%">
+ </a>

@@ -1,11 +1,5 @@
 [![Support mui-markdown](./.github/assets/support-mui-markdown.png 'Click to support')](https://www.paypal.com/donate/?hosted_button_id=SW7L8MAT9BRA6)
 
-## Backers
-
- <a href='https://github.com/alyphen'> 
-  <img src="https://github.com/alyphen.png" alt="mui-markdown backer" width='36px' height='36px' style="border-radius: 50%">
- </a>
-
 ## About
 
 `mui-markdown` uses [markdown-to-jsx](https://github.com/probablyup/markdown-to-jsx) and [MUI(formerly material-ui)](https://github.com/mui-org/material-ui) to help you render MD/MDX files with MUI components.
@@ -290,9 +284,9 @@ const App = () => {
       overrides={{
         ...getOverrides({ Highlight, themes, theme: themes.github }), // This will keep the other default overrides.
         h1: {
-          component: "p",
+          component: 'p',
           props: {
-            style: { color: "red" },
+            style: { color: 'red' },
           },
         },
       }}
@@ -304,3 +298,9 @@ const App = () => {
 
 export default App;
 ```
+
+## Backers
+
+ <a href='https://github.com/alyphen'> 
+  <img src="https://github.com/alyphen.png" alt="mui-markdown backer" width='36px' height='36px' style="border-radius: 50%">
+ </a>
