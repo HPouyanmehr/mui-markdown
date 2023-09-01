@@ -56,7 +56,7 @@ Props available for `MuiMarkdown` component:
 | themes            | HighlightThemes         | -                | **optional**          |
 | hideLineNumbers   | boolean                 | false            | **optional**          |
 
-Note: You cannot use overrides and options at the same time.
+**NOTE:** You cannot use overrides and options at the same time.
 
 ### overrides
 
@@ -268,6 +268,34 @@ const App = () => {
       themes={themes}
       prismTheme={themes.github}
       hideLineNumbers
+    >
+      {`# Hello markdown!`}
+    </MuiMarkdown>
+  );
+};
+
+export default App;
+```
+
+When you use overrides, you can have the syntax highlight by passing the `Highlight`, `themes`, and `themes.github` (or your favorite one) to the `getOverrides` function.
+
+```tsx
+import React from 'react';
+import { MuiMarkdown, getOverrides } from 'mui-markdown';
+import { Highlight, themes } from 'prism-react-renderer';
+
+const App = () => {
+  return (
+    <MuiMarkdown
+      overrides={{
+        ...getOverrides({ Highlight, themes, theme: themes.github }), // This will keep the other default overrides.
+        h1: {
+          component: "p",
+          props: {
+            style: { color: "red" },
+          },
+        },
+      }}
     >
       {`# Hello markdown!`}
     </MuiMarkdown>
