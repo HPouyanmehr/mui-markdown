@@ -1,4 +1,6 @@
-[![Support mui-markdown](./.github/assets/support-mui-markdown.png 'Click to support')](https://www.paypal.com/donate/?hosted_button_id=SW7L8MAT9BRA6)
+![Mui Markdown Cover](./.github/assets/mui-markdown-cover.jpg)
+
+[Support `mui-markdown` for $1 per month.](https://www.paypal.com/donate/?hosted_button_id=SW7L8MAT9BRA6)
 
 ## About
 
