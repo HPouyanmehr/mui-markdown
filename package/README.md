@@ -1,4 +1,4 @@
-![Mui Markdown Cover](https://github.com/HPouyanmehr/mui-markdown/blob/main/.github/assets/mui-markdown-cover.jpg)
+![Mui Markdown Cover](https://github.com/HPouyanmehr/mui-markdown/blob/main/.github/assets/mui-markdown.webp)
 
 [Support `mui-markdown` for $1 per month.](https://www.paypal.com/donate/?hosted_button_id=SW7L8MAT9BRA6)
 
