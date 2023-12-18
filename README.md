@@ -1,7 +1,5 @@
 ![Mui Markdown Cover](./.github/assets/mui-markdown.webp)
 
-[Support `mui-markdown` for $1 per month.](https://www.paypal.com/donate/?hosted_button_id=SW7L8MAT9BRA6)
-
 ## About
 
 `mui-markdown` uses [markdown-to-jsx](https://github.com/probablyup/markdown-to-jsx) and [MUI(formerly material-ui)](https://github.com/mui-org/material-ui) to help you render MD/MDX files with MUI components.
@@ -306,3 +304,5 @@ export default App;
  <a href='https://github.com/alyphen'> 
   <img src="https://github.com/alyphen.png" alt="mui-markdown backer" width='36px' height='36px' style="border-radius: 50%">
  </a>
+
+[Become a Backer](https://www.paypal.com/donate/?hosted_button_id=SW7L8MAT9BRA6)
