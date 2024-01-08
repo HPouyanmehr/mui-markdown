@@ -304,5 +304,3 @@ export default App;
  <a href='https://github.com/alyphen'> 
   <img src="https://github.com/alyphen.png" alt="mui-markdown backer" width='36px' height='36px' style="border-radius: 50%">
  </a>
-
-[Become a Backer](https://www.paypal.com/donate/?hosted_button_id=SW7L8MAT9BRA6)
