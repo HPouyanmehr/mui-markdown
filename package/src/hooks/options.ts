@@ -3,9 +3,9 @@ import { getOverrides } from '../overrides';
 
 // Custom Types
 import type { Options } from '../types/markdown';
-import type { MuiMarkdownProps } from '../types/muiMarkdown';
+import type { JoyuiMarkdownProps } from '../types/joyuiMarkdown';
 
-const useOptions = (props: MuiMarkdownProps): Options => {
+const useOptions = (props: JoyuiMarkdownProps): Options => {
   const { options, overrides } = props;
 
   const defaultOverrides = getOverrides(props);

@@ -1,13 +1,17 @@
 {
-  "name": "mui-markdown",
-  "version": "1.1.13",
+  "name": "joyui-markdown",
+  "version": "0.0.0",
   "private": false,
   "author": {
-    "name": "Hosein Pouyanmehr",
-    "email": "a.h.pouyanmehr@gmail.com",
-    "url": "https://github.com/HPouyanmehr"
+    "name": "Gaurav Bansal",
+    "email": "gauravbansal9999@gmail.com",
+    "url": "https://github.com/bgaurav7"
   },
   "contributors": [
+    {
+      "name": "Hosein Pouyanmehr",
+      "url": "https://github.com/HPouyanmehr"
+    },
     {
       "name": "Et3rnos",
       "url": "https://github.com/Et3rnos"
@@ -25,7 +29,7 @@
       "url": "https://github.com/grajdeanserghei"
     }
   ],
-  "description": "mui-markdown uses markdown-to-jsx and MUI(formerly material-ui) to help you render MD/MDX files with MUI components.",
+  "description": "joyui-markdown uses markdown-to-jsx and JoyUI(from MUI) to help you render MD/MDX files with JoyUI components.",
   "license": "MIT",
   "type": "module",
   "main": "dist/index.js",
@@ -42,17 +46,17 @@
   "keywords": [
     "markdown",
     "react markdown",
-    "mui",
-    "mui markdown",
-    "material-ui markdown"
+    "joyui",
+    "joyui markdown",
+    "joy-ui markdown"
   ],
-  "homepage": "https://github.com/HPouyanmehr/mui-markdown",
+  "homepage": "https://github.com/bgaurav7/joyui-markdown",
   "repository": {
     "type": "git",
-    "url": "https://github.com/HPouyanmehr/mui-markdown"
+    "url": "https://github.com/bgaurav7/joyui-markdown"
   },
   "bugs": {
-    "url": "https://github.com/HPouyanmehr/mui-markdown/issues"
+    "url": "https://github.com/bgaurav7/joyui-markdown/issues"
   },
   "scripts": {
     "build-lib": "rollup -c",
@@ -61,7 +65,7 @@
   "peerDependencies": {
     "@emotion/react": "^11.10.8",
     "@emotion/styled": "^11.10.8",
-    "@mui/material": "^5.12.2",
+    "@mui/joy": "^5.0.0-beta.23",
     "markdown-to-jsx": "^7.3.0",
     "react": ">= 17.0.2",
     "react-dom": ">= 17.0.2"
@@ -76,7 +80,7 @@
     "@emotion/styled": "^11.10.8",
     "@mdx-js/loader": "^2.3.0",
     "@mdx-js/react": "^2.3.0",
-    "@mui/material": "^5.12.2",
+    "@mui/joy": "^5.0.0-beta.23",
     "@rollup/plugin-babel": "^6.0.3",
     "@rollup/plugin-commonjs": "^24.0.1",
     "@rollup/plugin-node-resolve": "^15.0.1",

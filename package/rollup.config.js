@@ -25,7 +25,7 @@ const config = [
     external: [
       'react',
       'react-dom',
-      '@mui/material',
+      '@mui/joy',
       '@emotion/react',
       '@emotion/styled',
       'markdown-to-jsx',

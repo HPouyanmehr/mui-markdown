@@ -12,7 +12,7 @@ const Span: FC<TypographyProps> = (props) => {
   const {
     children,
     component = 'span',
-    variant = 'body1',
+    variant = 'plain',
     ...otherProps
   } = props;
 

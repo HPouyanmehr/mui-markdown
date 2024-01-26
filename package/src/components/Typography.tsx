@@ -1,14 +1,14 @@
-import { Typography as MuiTypography, styled } from '@mui/material';
+import { Typography as JoyuiTypography, styled } from '@mui/joy';
 
 // Types
 import type { ElementType } from 'react';
-import type { TypographyProps as MuiTypographyProps } from '@mui/material';
+import type { TypographyProps as JoyuiTypographyProps } from '@mui/joy';
 
 // Custom Types
-export interface TypographyProps extends MuiTypographyProps {
+export interface TypographyProps extends JoyuiTypographyProps {
   component?: ElementType;
 }
 
-const Typography = styled(MuiTypography)<TypographyProps>(() => ({}));
+const Typography = styled(JoyuiTypography)<TypographyProps>(() => ({}));
 
 export default Typography;

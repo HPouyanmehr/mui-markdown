@@ -1,11 +1,11 @@
-import { Divider as MuiDivider, styled } from '@mui/material';
+import { Divider as JoyuiDivider, styled } from '@mui/joy';
 
 // Types
-import type { DividerProps as MuiDividerProps } from '@mui/material';
+import type { DividerProps as JoyuiDividerProps } from '@mui/joy';
 
 // Custom Types
-export interface DividerProps extends MuiDividerProps {}
+export interface DividerProps extends JoyuiDividerProps {}
 
-const Divider = styled(MuiDivider)<DividerProps>(() => ({}));
+const Divider = styled(JoyuiDivider)<DividerProps>(() => ({}));
 
 export default Divider;

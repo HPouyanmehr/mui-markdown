@@ -1,4 +1,4 @@
-import { MuiMarkdown } from 'mui-markdown';
+import { JoyuiMarkdown } from 'joyui-markdown';
 
 const md = `
 # Heading One
@@ -8,7 +8,7 @@ const md = `
 
 const App = () => (
   <div className='App'>
-    <MuiMarkdown>{md}</MuiMarkdown>
+    <JoyuiMarkdown>{md}</JoyuiMarkdown>
   </div>
 );
 export default App;

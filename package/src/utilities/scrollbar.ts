@@ -1,7 +1,5 @@
-import { darken } from '@mui/material';
-
 // Types
-import type { Palette } from '@mui/material';
+import type { Palette } from '@mui/joy';
 
 const getScrollbarStyles = (palette: Palette) => ({
   '::-webkit-scrollbar': {
@@ -11,13 +9,13 @@ const getScrollbarStyles = (palette: Palette) => ({
   '::-webkit-scrollbar-track': {
     background:
       palette.mode === 'dark'
-        ? palette.background.default
-        : palette.background.paper,
+        ? 'background.body'
+        : 'background.body',
     borderRadius: '8px',
     overflow: 'hidden',
   },
   '::-webkit-scrollbar-thumb': {
-    background: darken(palette.background.default, 0.05),
+    background: 'background.body',
     borderRadius: '8px',
   },
 });

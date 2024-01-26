@@ -1,11 +1,11 @@
-import { Box as MuiBox, styled } from '@mui/material';
+import { Box as JoyuiBox, styled } from '@mui/joy';
 
 // Types
-import type { BoxProps as MuiBoxProps } from '@mui/material';
+import type { BoxProps as JoyuiBoxProps } from '@mui/joy';
 
 // Custom Types
-export interface BoxProps extends MuiBoxProps {}
+export interface BoxProps extends JoyuiBoxProps {}
 
-const Box = styled(MuiBox)<BoxProps>(() => ({}));
+const Box = styled(JoyuiBox)<BoxProps>(() => ({}));
 
 export default Box;

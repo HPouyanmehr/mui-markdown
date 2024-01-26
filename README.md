@@ -1,8 +1,8 @@
-![Mui Markdown Cover](./.github/assets/mui-markdown.webp)
+# JoyUI Markdown
 
 ## About
 
-`mui-markdown` uses [markdown-to-jsx](https://github.com/probablyup/markdown-to-jsx) and [MUI(formerly material-ui)](https://github.com/mui-org/material-ui) to help you render MD/MDX files with MUI components.
+`joyui-markdown` uses [markdown-to-jsx](https://github.com/probablyup/markdown-to-jsx) and [JoyUI(from MUI)](https://mui.com/joy-ui/getting-started/) to help you render MD/MDX files with JoyUI components.
 
 ## User Guide
 
@@ -10,25 +10,25 @@
 
 ```bash
 # with npm
-npm i mui-markdown@latest
+npm i joyui-markdown@latest
 
 # with yarn
-yarn add mui-markdown
+yarn add joyui-markdown
 ```
 
 ### Usage
 
-The example below will render the `h1` tag using MUI `Typography` component.
+The example below will render the `h1` tag using JoyUI `Typography` component.
 
 ```js
 import React from 'react';
-import { MuiMarkdown } from 'mui-markdown';
+import { JoyuiMarkdown } from 'joyui-markdown';
 // You can also use
-// import MuiMarkdown from 'mui-markdown';
+// import JoyuiMarkdown from 'joyui-markdown';
 // But the first approach is recommended.
 
 const App = () => {
-  return <MuiMarkdown>{`# Hello markdown!`}</MuiMarkdown>;
+  return <JoyuiMarkdown>{`# Hello markdown!`}</JoyuiMarkdown>;
 };
 
 export default App;
@@ -36,7 +36,7 @@ export default App;
 
 ### Props
 
-Props available for `MuiMarkdown` component:
+Props available for `JoyuiMarkdown` component:
 
 | Name              | Type                    | Default          | Optional or Mandatory |
 | ----------------- | ----------------------- | ---------------- | --------------------- |
@@ -62,11 +62,11 @@ JS and JSX:
 
 ```jsx
 import React from 'react';
-import { MuiMarkdown, getOverrides } from 'mui-markdown';
+import { JoyuiMarkdown, getOverrides } from 'joyui-markdown';
 
 const App = () => {
   return (
-    <MuiMarkdown
+    <JoyuiMarkdown
       overrides={{
         ...getOverrides({}), // This will keep the other default overrides.
         h1: {
@@ -78,7 +78,7 @@ const App = () => {
       }}
     >
       {`# Hello markdown!`}
-    </MuiMarkdown>
+    </JoyuiMarkdown>
   );
 };
 
@@ -89,11 +89,11 @@ TS and TSX:
 
 ```tsx
 import React from 'react';
-import { MuiMarkdown, getOverrides } from 'mui-markdown';
+import { JoyuiMarkdown, getOverrides } from 'joyui-markdown';
 
 const App = () => {
   return (
-    <MuiMarkdown
+    <JoyuiMarkdown
       overrides={{
         ...getOverrides(), // This will keep the other default overrides.
         h1: {
@@ -105,7 +105,7 @@ const App = () => {
       }}
     >
       {`# Hello markdown!`}
-    </MuiMarkdown>
+    </JoyuiMarkdown>
   );
 };
 
@@ -118,12 +118,12 @@ JS and JSX:
 
 ```jsx
 import React from 'react';
-import { MuiMarkdown, getOverrides } from 'mui-markdown';
+import { JoyuiMarkdown, getOverrides } from 'joyui-markdown';
 import CustomTypography from './components/CustomTypography';
 
 const App = () => {
   return (
-    <MuiMarkdown
+    <JoyuiMarkdown
       overrides={{
         ...getOverrides(), // This will keep the other default overrides.
         h1: {
@@ -135,7 +135,7 @@ const App = () => {
       }}
     >
       {`# Hello markdown!`}
-    </MuiMarkdown>
+    </JoyuiMarkdown>
   );
 };
 
@@ -146,14 +146,14 @@ TS and TSX:
 
 ```tsx
 import React from 'react';
-import { MuiMarkdown, getOverrides } from 'mui-markdown';
+import { JoyuiMarkdown, getOverrides } from 'joyui-markdown';
 import CustomTypography, {
   CustomTypographyProps,
 } from './components/CustomTypography';
 
 const App = () => {
   return (
-    <MuiMarkdown
+    <JoyuiMarkdown
       overrides={{
         ...getOverrides(), // This will keep the other default overrides.
         h1: {
@@ -165,7 +165,7 @@ const App = () => {
       }}
     >
       {`# Hello markdown!`}
-    </MuiMarkdown>
+    </JoyuiMarkdown>
   );
 };
 
@@ -176,7 +176,7 @@ export default App;
 
 You can read about options in the [markdown-to-jsx](https://www.npmjs.com/package/markdown-to-jsx#parsing-options) docs.
 
-**Note:** If you want to override something and also need to set some options, add the `overrides` property in the `options`. Don't use overrides and options property together on the `MuiMarkdown` component.
+**Note:** If you want to override something and also need to set some options, add the `overrides` property in the `options`. Don't use overrides and options property together on the `JoyuiMarkdown` component.
 
 ### codeWrapperStyles
 
@@ -192,7 +192,7 @@ You can pass your desired styles for the syntax highlighter component. These are
 
 ### Syntax Highlight
 
-`mui-markdown` uses [prism-react-renderer](https://github.com/FormidableLabs/prism-react-renderer) to highlight code blocks. As this is an optional dependencies, you need to install it if you want to have a syntax highlighter. So to highlight your code:
+`joyui-markdown` uses [prism-react-renderer](https://github.com/FormidableLabs/prism-react-renderer) to highlight code blocks. As this is an optional dependencies, you need to install it if you want to have a syntax highlighter. So to highlight your code:
 
 - First install `prism-react-renderer`
 
@@ -204,22 +204,22 @@ npm i prism-react-renderer
 yarn add prism-react-renderer
 ```
 
-- Then pass the `Highlight` and the `themes` to the `MuiMarkdown` component
+- Then pass the `Highlight` and the `themes` to the `JoyuiMarkdown` component
 
 ```tsx
 import React from 'react';
-import { MuiMarkdown } from 'mui-markdown';
+import { JoyuiMarkdown } from 'joyui-markdown';
 import { Highlight, themes } from 'prism-react-renderer';
 
 const App = () => {
   return (
-    <MuiMarkdown
+    <JoyuiMarkdown
       Highlight={Highlight}
       themes={themes}
       prismTheme={themes.github}
     >
       {`# Hello markdown!`}
-    </MuiMarkdown>
+    </JoyuiMarkdown>
   );
 };
 
@@ -230,18 +230,18 @@ With the `prismTheme` property you can change the highlight theme.
 
 ```tsx
 import React from 'react';
-import { MuiMarkdown } from 'mui-markdown';
+import { JoyuiMarkdown } from 'joyui-markdown';
 import { Highlight, themes } from 'prism-react-renderer';
 
 const App = () => {
   return (
-    <MuiMarkdown
+    <JoyuiMarkdown
       Highlight={Highlight}
       themes={themes}
       prismTheme={themes.github}
     >
       {`# Hello markdown!`}
-    </MuiMarkdown>
+    </JoyuiMarkdown>
   );
 };
 
@@ -252,19 +252,19 @@ Also to disable the line numbers in the code block you can use the `hideLineNumb
 
 ```tsx
 import React from 'react';
-import { MuiMarkdown } from 'mui-markdown';
+import { JoyuiMarkdown } from 'joyui-markdown';
 import { Highlight, themes } from 'prism-react-renderer';
 
 const App = () => {
   return (
-    <MuiMarkdown
+    <JoyuiMarkdown
       Highlight={Highlight}
       themes={themes}
       prismTheme={themes.github}
       hideLineNumbers
     >
       {`# Hello markdown!`}
-    </MuiMarkdown>
+    </JoyuiMarkdown>
   );
 };
 
@@ -275,12 +275,12 @@ When you use overrides, you can have the syntax highlight by passing the `Highli
 
 ```tsx
 import React from 'react';
-import { MuiMarkdown, getOverrides } from 'mui-markdown';
+import { JoyuiMarkdown, getOverrides } from 'joyui-markdown';
 import { Highlight, themes } from 'prism-react-renderer';
 
 const App = () => {
   return (
-    <MuiMarkdown
+    <JoyuiMarkdown
       overrides={{
         ...getOverrides({ Highlight, themes, theme: themes.github }), // This will keep the other default overrides.
         h1: {
@@ -292,7 +292,7 @@ const App = () => {
       }}
     >
       {`# Hello markdown!`}
-    </MuiMarkdown>
+    </JoyuiMarkdown>
   );
 };
 
@@ -301,6 +301,6 @@ export default App;
 
 ## Backers
 
- <a href='https://github.com/alyphen'> 
-  <img src="https://github.com/alyphen.png" alt="mui-markdown backer" width='36px' height='36px' style="border-radius: 50%">
+ <a href='https://github.com/bgaurav7'> 
+  <img src="https://github.com/bgaurav7.png" alt="joyui-markdown backer" width='36px' height='36px' style="border-radius: 50%">
  </a>

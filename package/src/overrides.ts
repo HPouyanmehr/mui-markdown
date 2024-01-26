@@ -21,11 +21,6 @@ import InlineCode from './components/InlineCode';
 import Link from './components/Link';
 import PreBlock from './components/PreBlock';
 import Span from './components/Span';
-import TableBody from './components/TableBody';
-import TableCell from './components/TableCell';
-import TableFooter from './components/TableFooter';
-import TableHead from './components/TableHead';
-import TableRow from './components/TableRow';
 import TableWrapper from './components/TableWrapper';
 
 export const defaultOverrides: Overrides = {
@@ -43,12 +38,6 @@ export const defaultOverrides: Overrides = {
   pre: PreBlock,
   span: Span,
   table: TableWrapper,
-  tbody: TableBody,
-  td: TableCell,
-  tfoot: TableFooter,
-  th: TableCell,
-  thead: TableHead,
-  tr: TableRow,
 };
 
 export const getOverrides = ({

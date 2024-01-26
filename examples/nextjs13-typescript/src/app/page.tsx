@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import { MuiMarkdown } from 'mui-markdown';
+import { JoyuiMarkdown } from 'joyui-markdown';
 
 import styles from './page.module.css';
 
@@ -93,7 +93,7 @@ export default function Home() {
           </p>
         </a>
       </div>
-      <MuiMarkdown>{`## Hello markdown!`}</MuiMarkdown>
+      <JoyuiMarkdown>{`## Hello markdown!`}</JoyuiMarkdown>
     </main>
   );
 }

@@ -7,12 +7,12 @@ import type { FC } from 'react';
 import useOptions from './hooks/options';
 
 // Custom Utilities
-import { hasOptionsAndOverridesProps } from './utilities/muiMarkdown';
+import { hasOptionsAndOverridesProps } from './utilities/joyuiMarkdown';
 
 // Custom Types
-import type { MuiMarkdownProps } from './types/muiMarkdown';
+import type { JoyuiMarkdownProps } from './types/joyuiMarkdown';
 
-const MuiMarkdown: FC<MuiMarkdownProps> = (props) => {
+const JoyuiMarkdown: FC<JoyuiMarkdownProps> = (props) => {
   // Props
   const { children = '' } = props;
 
@@ -21,7 +21,7 @@ const MuiMarkdown: FC<MuiMarkdownProps> = (props) => {
 
   if (hasOptionsAndOverridesProps(props)) {
     console.error(
-      "Cannot set both 'options' and 'overrides' in the MuiMarkdown component props."
+      "Cannot set both 'options' and 'overrides' in the JoyuiMarkdown component props."
     );
   }
 
@@ -30,4 +30,4 @@ const MuiMarkdown: FC<MuiMarkdownProps> = (props) => {
   );
 };
 
-export default MuiMarkdown;
+export default JoyuiMarkdown;

@@ -1,4 +1,4 @@
-import { useTheme, darken } from '@mui/material';
+import { useTheme } from '@mui/joy';
 
 // Types
 import type { FC, ReactNode } from 'react';
@@ -18,7 +18,7 @@ const InlineCode: FC<InlineCodeProps> = (props) => {
   return (
     <code
       style={{
-        backgroundColor: darken(palette.background.default, 0.07),
+        backgroundColor: 'background.body',
         borderRadius: '0.25rem',
         padding: '0.25rem 0.5rem',
       }}

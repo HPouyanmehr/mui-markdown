@@ -1,13 +1,13 @@
 // Custom Types
 import type { CSSProperties } from 'react';
-import type { Options, Overrides } from '../types/markdown';
+import type { Options, Overrides } from './markdown';
 import type {
   HighlightComponent,
   HighlightThemes,
   PrismTheme,
 } from './highlight';
 
-export interface MuiMarkdownRootProps {
+export interface JoyuiMarkdownRootProps {
   hideLineNumbers?: boolean;
   children?: string | null;
   prismTheme?: PrismTheme;
@@ -16,16 +16,16 @@ export interface MuiMarkdownRootProps {
   themes?: HighlightThemes;
 }
 
-export interface MuiMarkdownWithOverrides extends MuiMarkdownRootProps {
+export interface JoyuiMarkdownWithOverrides extends JoyuiMarkdownRootProps {
   overrides?: Overrides;
   options?: never;
 }
 
-export interface MuiMarkdownWithOptions extends MuiMarkdownRootProps {
+export interface JoyuiMarkdownWithOptions extends JoyuiMarkdownRootProps {
   options?: Options;
   overrides?: never;
 }
 
-export type MuiMarkdownProps =
-  | MuiMarkdownWithOptions
-  | MuiMarkdownWithOverrides;
+export type JoyuiMarkdownProps =
+  | JoyuiMarkdownWithOptions
+  | JoyuiMarkdownWithOverrides;
