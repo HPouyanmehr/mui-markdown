@@ -27,6 +27,8 @@ import TableFooter from './components/TableFooter';
 import TableHead from './components/TableHead';
 import TableRow from './components/TableRow';
 import TableWrapper from './components/TableWrapper';
+import UnorderedList from './components/UnorderedList';
+import OrderedList from './components/OrderedList';
 
 export const defaultOverrides: Overrides = {
   a: Link,
@@ -39,6 +41,7 @@ export const defaultOverrides: Overrides = {
   h5: H5,
   h6: H6,
   hr: Divider,
+  ol: OrderedList,
   p: BodyOne,
   pre: PreBlock,
   span: Span,
@@ -49,6 +52,7 @@ export const defaultOverrides: Overrides = {
   th: TableCell,
   thead: TableHead,
   tr: TableRow,
+  ul: UnorderedList,
 };
 
 export const getOverrides = ({
