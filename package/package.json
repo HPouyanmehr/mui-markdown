@@ -23,6 +23,10 @@
     {
       "name": "SGrajdean",
       "url": "https://github.com/grajdeanserghei"
+    },
+    {
+      "name": "marcveens",
+      "ulr": "https://github.com/marcveens"
     }
   ],
   "description": "mui-markdown uses markdown-to-jsx and MUI(formerly material-ui) to help you render MD/MDX files with MUI components.",
