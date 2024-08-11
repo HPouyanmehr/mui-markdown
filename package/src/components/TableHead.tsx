@@ -1,11 +1,12 @@
-import { TableHead as MuiTableHead, styled } from '@mui/material';
+import { TableHead as MuiTableHead } from '@mui/material';
 
 // Types
+import type { FC } from 'react';
 import type { TableHeadProps as MuiTableHeadProps } from '@mui/material';
 
 // Custom Types
 export interface TableHeadProps extends MuiTableHeadProps {}
 
-const TableHead = styled(MuiTableHead)<TableHeadProps>(() => ({}));
+const TableHead: FC<TableHeadProps> = (props) => <MuiTableHead {...props} />;
 
 export default TableHead;
