@@ -22,7 +22,9 @@ const TableWrapper = (props: TableProps) => {
             })
       }
     >
-      <Table {...otherProps}>{children}</Table>
+      <Box sx={{ width: "100%", display: "table", tableLayout: "fixed" }}>
+        <Table {...otherProps}>{children}</Table>
+      </Box>
     </Box>
   );
 };
