@@ -1,6 +1,6 @@
 {
   "name": "mui-markdown",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "private": false,
   "author": {
     "name": "Hosein Pouyanmehr",
@@ -31,6 +31,10 @@
     {
       "name": "Alfredo Salzillo",
       "url": "https://github.com/alfredosalzillo"
+    },
+    {
+      "name": "Filip Niklas",
+      "url": "https://github.com/Firgrep"
     }
   ],
   "description": "mui-markdown uses markdown-to-jsx and MUI(formerly material-ui) to help you render MD/MDX files with MUI components.",
