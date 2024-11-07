@@ -1,3 +1,5 @@
+Support this project by [giving it a star](https://github.com/HPouyanmehr/mui-markdown) on GitHub.
+
 ![Mui Markdown Cover](https://github.com/HPouyanmehr/mui-markdown/blob/main/.github/assets/mui-markdown.webp)
 
 ## About
