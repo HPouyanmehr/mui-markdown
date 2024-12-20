@@ -1,6 +1,6 @@
 {
   "name": "mui-markdown",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "private": false,
   "author": {
     "name": "Hosein Pouyanmehr",
@@ -96,6 +96,7 @@
     "@types/node": "^16.18.25",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.1",
+    "@types/mdx": "^2.0.13",
     "markdown-to-jsx": "^7.3.0",
     "postcss-import": "^15.1.0",
     "postcss-preset-env": "^8.2.0",
@@ -127,8 +128,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "dependencies": {
-    "@types/mdx": "^2.0.13"
   }
 }
