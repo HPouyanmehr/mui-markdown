@@ -7,6 +7,7 @@ export type { PrismTheme } from './types/highlight';
 
 // Utilities
 export { defaultOverrides, getOverrides } from './overrides';
+export { defaultMdxComponents, getMdxComponents } from './mdxComponents';
 
 // MUI Markdown
 export default MuiMarkdown;

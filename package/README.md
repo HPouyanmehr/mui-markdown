@@ -301,6 +301,29 @@ const App = () => {
 export default App;
 ```
 
+## NextJS
+
+### Use with `useMDXComponents`
+
+To add `mui-markdown` to `useMDXComponents` you can either import `defaultMdxComponents` or use `getMdxComponents` if you need to override defaults.
+
+```ts
+import type { MDXComponents } from 'mdx/types';
+
+import { defaultMdxComponents, getMdxComponents } from 'mui-markdown';
+
+// You can use the getMdxComponents(options) to override defaults!
+// const mdxComponents = getMdxComponents();
+
+export function useMDXComponents(components: MDXComponents): MDXComponents {
+  return {
+    // ...mdxComponents,
+    ...defaultMdxComponents,
+    ...components,
+  };
+}
+```
+
 ## Backers
 
  <a href='https://github.com/alyphen'> 

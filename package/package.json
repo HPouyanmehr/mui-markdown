@@ -1,6 +1,6 @@
 {
   "name": "mui-markdown",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "private": false,
   "author": {
     "name": "Hosein Pouyanmehr",
@@ -127,5 +127,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "dependencies": {
+    "@types/mdx": "^2.0.13"
   }
 }
