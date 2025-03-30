@@ -1,7 +1,11 @@
 import Image from 'next/image';
-import { Button } from '@mui/material';
+import { MuiMarkdown } from 'mui-markdown';
 
 import styles from './page.module.css';
+
+const markdown = `## Mui Markdown
+### Heading Three
+`;
 
 export default function Home() {
   return (
@@ -15,6 +19,7 @@ export default function Home() {
           height={38}
           priority
         />
+        <MuiMarkdown>{markdown}</MuiMarkdown>
         <ol>
           <li>
             Get started by editing <code>src/app/page.tsx</code>.
@@ -47,7 +52,6 @@ export default function Home() {
             Read our docs
           </a>
         </div>
-        <Button variant='contained'>Mui Button</Button>
       </main>
       <footer className={styles.footer}>
         <a
