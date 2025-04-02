@@ -7,7 +7,7 @@ import Typography from './Typography';
 // Custom Types
 import type { TypographyProps } from './Typography';
 
-const H2: FC<TypographyProps> = (props) => {
+const H1: FC<TypographyProps> = (props) => {
   // Props
   const { children, component = 'h1', variant = 'h1', ...otherProps } = props;
 
@@ -18,4 +18,4 @@ const H2: FC<TypographyProps> = (props) => {
   );
 };
 
-export default H2;
+export default H1;
