@@ -6,6 +6,12 @@ Support this project by [giving it a star](https://github.com/HPouyanmehr/mui-ma
 
 `mui-markdown` uses [markdown-to-jsx](https://github.com/probablyup/markdown-to-jsx) and [MUI(formerly material-ui)](https://github.com/mui-org/material-ui) to help you render MD/MDX files with MUI components.
 
+Using `mui-markdown`:
+
+- Markdown components will adapt to theme automatically
+- Optional Syntax Highlight Support using `prism-react-renderer`
+- Optional Diagrams Support using `mermaid`
+
 ## User Guide
 
 ### Installation
@@ -51,6 +57,8 @@ Props available for `MuiMarkdown` component:
 | Highlight         | HighlightComponent      | -                | **optional**          |
 | themes            | HighlightThemes         | -                | **optional**          |
 | hideLineNumbers   | boolean                 | false            | **optional**          |
+| enableMermaid     | boolean                 | false            | **optional**          |
+| mermaidConfig     | MermaidConfig           | -                | **optional**          |
 
 **NOTE:** You cannot use overrides and options at the same time.
 
@@ -64,13 +72,13 @@ JS and JSX:
 
 ```jsx
 import React from 'react';
-import { MuiMarkdown, getOverrides } from 'mui-markdown';
+import { MuiMarkdown, defaultOverrides } from 'mui-markdown';
 
 const App = () => {
   return (
     <MuiMarkdown
       overrides={{
-        ...getOverrides({}), // This will keep the other default overrides.
+        ...defaultOverrides, // This will keep the other default overrides.
         h1: {
           component: 'p',
           props: {
@@ -91,13 +99,13 @@ TS and TSX:
 
 ```tsx
 import React from 'react';
-import { MuiMarkdown, getOverrides } from 'mui-markdown';
+import { MuiMarkdown, defaultOverrides } from 'mui-markdown';
 
 const App = () => {
   return (
     <MuiMarkdown
       overrides={{
-        ...getOverrides(), // This will keep the other default overrides.
+        ...defaultOverrides, // This will keep the other default overrides.
         h1: {
           component: 'p',
           props: {
@@ -120,14 +128,14 @@ JS and JSX:
 
 ```jsx
 import React from 'react';
-import { MuiMarkdown, getOverrides } from 'mui-markdown';
+import { MuiMarkdown, defaultOverrides } from 'mui-markdown';
 import CustomTypography from './components/CustomTypography';
 
 const App = () => {
   return (
     <MuiMarkdown
       overrides={{
-        ...getOverrides(), // This will keep the other default overrides.
+        ...defaultOverrides, // This will keep the other default overrides.
         h1: {
           component: CustomTypography,
           props: {
@@ -148,7 +156,7 @@ TS and TSX:
 
 ```tsx
 import React from 'react';
-import { MuiMarkdown, getOverrides } from 'mui-markdown';
+import { MuiMarkdown, defaultOverrides } from 'mui-markdown';
 import CustomTypography, {
   CustomTypographyProps,
 } from './components/CustomTypography';
@@ -157,7 +165,7 @@ const App = () => {
   return (
     <MuiMarkdown
       overrides={{
-        ...getOverrides(), // This will keep the other default overrides.
+        ...defaultOverrides, // This will keep the other default overrides.
         h1: {
           component: CustomTypography,
           props: {
@@ -301,6 +309,18 @@ const App = () => {
 export default App;
 ```
 
+## Diagram Support
+
+`mui-markdown` uses [`mermaid`](https://github.com/mermaid-js/mermaid) as its diagramming and charting tool, to enable that, first make sure you have the `mermaid` installed. By passing the `enableMermaid` key you'll be able to have diagram support in you markdowns. Also, using the `mermaidConfigs` you can configure it as you like.
+
+```tsx
+...
+      <MuiMarkdown enableMermaid mermaidConfig={{startOnLoad: true}} >
+        {/* Markdown content */}
+      </MuiMarkdown>
+...
+```
+
 ## NextJS
 
 ### Use with `useMDXComponents`
@@ -323,9 +343,3 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
   };
 }
 ```
-
-## Backers
-
- <a href='https://github.com/alyphen'> 
-  <img src="https://github.com/alyphen.png" alt="mui-markdown backer" width='36px' height='36px' style="border-radius: 50%">
- </a>

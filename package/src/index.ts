@@ -1,14 +1,21 @@
-import MuiMarkdown from './MuiMarkdown';
+import { MuiMarkdown } from './core/components/display/muiMarkdown';
 
-// Types
-export type { Options, Overrides } from './types/markdown';
-export type { MuiMarkdownProps } from './types/muiMarkdown';
-export type { PrismTheme } from './types/highlight';
+// Core Utilities
+export {
+  defaultOverrides,
+  getOverrides,
+} from './core/utilities/helpers/overrides';
+export {
+  defaultMdxComponents,
+  getMdxComponents,
+} from './core/utilities/helpers/mdx';
 
-// Utilities
-export { defaultOverrides, getOverrides } from './overrides';
-export { defaultMdxComponents, getMdxComponents } from './mdxComponents';
+// Core Types
+export type { Options, Overrides, MuiMarkdownProps } from './core/types';
+
+// Feature Types
+export type { PrismTheme } from './features/highlight/types';
 
 // MUI Markdown
 export default MuiMarkdown;
-export { default as MuiMarkdown } from './MuiMarkdown';
+export { MuiMarkdown } from './core/components/display/muiMarkdown';
