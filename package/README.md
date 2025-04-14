@@ -50,8 +50,8 @@ Props available for `MuiMarkdown` component:
 | ----------------- | ----------------------- | ---------------- | --------------------- |
 | key               | React.key               | -                | **optional**          |
 | children          | string                  | -                | **optional**          |
-| overrides         | MarkdownToJSX.Overrides | defaultOverrides | **optional**          |
-| options           | MarkdownToJSX.Options   | -                | **optional**          |
+| overrides*        | MarkdownToJSX.Overrides | defaultOverrides | **optional**          |
+| options*          | MarkdownToJSX.Options   | -                | **optional**          |
 | codeWrapperStyles | CSSProperties           | -                | **optional**          |
 | prismTheme        | PrismTheme              | vsDark           | **optional**          |
 | Highlight         | HighlightComponent      | -                | **optional**          |
@@ -59,8 +59,10 @@ Props available for `MuiMarkdown` component:
 | hideLineNumbers   | boolean                 | false            | **optional**          |
 | enableMermaid     | boolean                 | false            | **optional**          |
 | mermaidConfig     | MermaidConfig           | -                | **optional**          |
+| Diagram*          | DiagramComponent        | -                | **optional**          |
 
 **NOTE:** You cannot use overrides and options at the same time.
+**NOTE:** You must provide the `Diagram` component if you've enabled the mermaid.
 
 ### overrides
 
@@ -311,14 +313,29 @@ export default App;
 
 ## Diagram Support
 
-`mui-markdown` uses [`mermaid`](https://github.com/mermaid-js/mermaid) as its diagramming and charting tool, to enable that, first make sure you have the `mermaid` installed. By passing the `enableMermaid` key you'll be able to have diagram support in you markdowns. Also, using the `mermaidConfigs` you can configure it as you like.
+`mui-markdown` uses [`mermaid`](https://github.com/mermaid-js/mermaid) as its diagramming and charting tool, to enable that, first make sure you have the `mermaid` installed. By passing the `enableMermaid` key you'll be able to have diagram support in your markdowns, just make sure you've provided the `Diagram` component as well. Also, using the `mermaidConfigs` you can configure it as you like.
+
+The `Diagram` component is a client-side component, You can create your desired one for that purpose if needed, just make sure the custom component satisfying the following type: `(props: DiagramProps) => JSX.Element`. Props type is available under `mui-markdown` and `mui-markdown/client`.
 
 ```tsx
-...
-      <MuiMarkdown enableMermaid mermaidConfig={{startOnLoad: true}} >
-        {/* Markdown content */}
-      </MuiMarkdown>
-...
+import React from 'react';
+import { MuiMarkdown, getOverrides } from 'mui-markdown';
+import { Diagram } from 'mui-markdown/client'; // This component will handle mermaid init and content load
+import { Highlight, themes } from 'prism-react-renderer';
+
+const App = () => {
+  return (
+    <MuiMarkdown
+      enableMermaid
+      mermaidConfig={{startOnLoad: true}}
+      DiagramComponent={Diagram}
+    >
+      {/* Markdown content */}
+    </MuiMarkdown>
+  );
+};
+
+export default App;
 ```
 
 ## NextJS

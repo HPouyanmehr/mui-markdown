@@ -1,6 +1,6 @@
 {
   "name": "mui-markdown",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "private": false,
   "description": "mui-markdown uses markdown-to-jsx and MUI(formerly material-ui) to help you render MD/MDX files with MUI components.",
   "license": "MIT",
@@ -75,7 +75,11 @@
       "import": "./dist/index.esm.js",
       "types": "./dist/types/index.d.ts"
     },
-    "./dist/styles.css": "./dist/styles.css"
+    "./client": {
+      "require": "./dist/client.js",
+      "import": "./dist/client.esm.js",
+      "types": "./dist/types/client.d.ts"
+    }
   },
   "files": [
     "dist/",

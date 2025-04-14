@@ -1,4 +1,4 @@
-import type { CSSProperties, ReactNode } from 'react';
+import type { CSSProperties, JSX, ReactNode } from 'react';
 
 // Core Components
 import { Box } from '../../layout/box';
@@ -6,12 +6,12 @@ import { SimpleCodeBlock } from '../../display/pre/codeBlock';
 
 // Feature Components
 import { HighlightCodeBlock } from '../../../../features/highlight/components/display/codeBlock';
-import {
-  Diagram,
-  type DiagramWithMermaid,
-} from '../../../../features/diagram/components/mermaid';
 
 // Feature Types
+import type {
+  DiagramProps,
+  DiagramWithMermaid,
+} from '../../../../features/diagram/components/mermaid/type';
 import type {
   HighlightComponent,
   HighlightThemes,
@@ -30,7 +30,9 @@ interface PreBlockCore {
 
 export interface PreBlockWithDiagram
   extends PreBlockCore,
-    Omit<DiagramWithMermaid, 'children'> {}
+    Omit<DiagramWithMermaid, 'children'> {
+  DiagramComponent?: (props: DiagramProps) => JSX.Element;
+}
 
 type PreBlockProps = PreBlockCore | PreBlockWithDiagram;
 
@@ -50,11 +52,24 @@ export const PreBlock = (props: PreBlockProps) => {
       : 'tsx';
 
     if ('enableMermaid' in props && props.enableMermaid && lang === 'mermaid') {
-      return (
-        <Diagram enableMermaid mermaidConfig={props.mermaidConfig}>
-          {code}
-        </Diagram>
-      );
+      if (
+        props.enableMermaid &&
+        'DiagramComponent' in props &&
+        props.DiagramComponent
+      ) {
+        return (
+          <props.DiagramComponent
+            enableMermaid
+            mermaidConfig={props.mermaidConfig}
+          >
+            {code}
+          </props.DiagramComponent>
+        );
+      } else {
+        console.error(
+          "Make sure you've passed the Diagram component to the MuiMarkdown properly, you can import it from 'mui-markdown/Diagram'."
+        );
+      }
     }
 
     if (Highlight && themes) {

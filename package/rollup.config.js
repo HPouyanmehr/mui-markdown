@@ -1,44 +1,53 @@
+import {typescriptPaths} from 'rollup-plugin-typescript-paths';
 import typescript from '@rollup/plugin-typescript';
 import terser from '@rollup/plugin-terser';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import preserveDirectives from 'rollup-preserve-directives';
-import {typescriptPaths} from 'rollup-plugin-typescript-paths';
+
+const externals = [
+  'react',
+  'react-dom',
+  '@mui/material',
+  '@emotion/react',
+  '@emotion/styled',
+  'markdown-to-jsx',
+  'mermaid',
+  'prism-react-renderer',
+]
+
+const plugins = [
+  peerDepsExternal(),
+  typescriptPaths({
+    tsConfigPath: './tsconfig.json',
+  }),
+  typescript({
+    tsconfig: './tsconfig.json'
+  }),
+  terser(),
+  preserveDirectives(),
+]
 
 export default {
-  input: './src/index.ts',
+  input: {
+    index: './src/index.ts',
+    client: './src/client.ts',
+  },
   output: [
     {
-      file: './dist/index.js',
+      dir: './dist',
       format: 'cjs',
-      sourcemap: true,
       exports: 'named',
+      entryFileNames: '[name].js',
+      sourcemap: true,
     },
     {
-      file: './dist/index.esm.js',
+      dir: './dist',
       format: 'esm',
-      sourcemap: true,
       exports: 'named',
+      entryFileNames: '[name].esm.js',
+      sourcemap: true,
     },
   ],
-  external: [
-    'react',
-    'react-dom',
-    '@mui/material',
-    '@emotion/react',
-    '@emotion/styled',
-    'markdown-to-jsx',
-    'mermaid',
-    'prism-react-renderer',
-  ],
-  plugins: [
-    peerDepsExternal(),
-    typescriptPaths({
-      tsConfigPath: './tsconfig.json',
-    }),
-    typescript({
-      tsconfig: './tsconfig.json'
-    }),
-    terser(),
-    preserveDirectives(),
-  ],
+  external: externals,
+  plugins,
 };

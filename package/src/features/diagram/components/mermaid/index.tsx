@@ -1,23 +1,13 @@
 'use client';
 
-import { ReactNode, useEffect, useState } from 'react';
-import type { Mermaid, MermaidConfig } from 'mermaid';
+import { useEffect, useState } from 'react';
+import type { Mermaid } from 'mermaid';
 
 // Core Components
 import { Box } from '../../../../core/components/layout/box';
 
 // Module Types
-export interface DiagramWithMermaid {
-  children?: ReactNode;
-  enableMermaid: true;
-  mermaidConfig?: MermaidConfig;
-}
-
-interface DiagramWithoutMermaid {
-  children?: ReactNode;
-}
-
-export type DiagramProps = DiagramWithoutMermaid | DiagramWithMermaid;
+import type { DiagramProps } from './type';
 
 export const Diagram = (props: DiagramProps) => {
   // Props
