@@ -2,6 +2,7 @@ import fs from 'fs';
 
 import { Container } from '@mui/material';
 import { MuiMarkdown } from 'mui-markdown';
+import { Diagram } from 'mui-markdown/client';
 import { MermaidConfig } from 'mermaid';
 
 const mermaidConfig: MermaidConfig = {
@@ -16,7 +17,11 @@ export default async function Home() {
 
   return (
     <Container>
-      <MuiMarkdown enableMermaid mermaidConfig={mermaidConfig}>
+      <MuiMarkdown
+        enableMermaid
+        mermaidConfig={mermaidConfig}
+        DiagramComponent={Diagram}
+      >
         {md}
       </MuiMarkdown>
     </Container>
