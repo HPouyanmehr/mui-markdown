@@ -1,5 +1,7 @@
 ![Mui Markdown Cover](./.github/assets/mui-markdown.webp)
 
+# MUI-Markdown
+
 ## About
 
 `mui-markdown` uses [markdown-to-jsx](https://github.com/probablyup/markdown-to-jsx) and [MUI(formerly material-ui)](https://github.com/mui-org/material-ui) to help you render MD/MDX files with MUI components.
@@ -9,6 +11,20 @@ Using `mui-markdown`:
 - Markdown components will adapt to theme automatically
 - Optional Syntax Highlight Support using `prism-react-renderer`
 - Optional Diagrams Support using `mermaid`
+
+## Table of Contents
+
+- [User Guide](#user-guide)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Props](#props)
+  - [Overrides](#overrides)
+  - [Options](#options)
+  - [Code Wrapper Styles](#codewrapperstyles)
+  - [Syntax Highlight](#syntax-highlight)
+- [Diagram Support](#diagram-support)
+- [NextJS](#nextjs)
+  - [Use with `useMDXComponents`](#use-with-usemdxcomponents)
 
 ## User Guide
 

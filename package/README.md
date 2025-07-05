@@ -12,6 +12,20 @@ Using `mui-markdown`:
 - Optional Syntax Highlight Support using `prism-react-renderer`
 - Optional Diagrams Support using `mermaid`
 
+## Table of Contents
+
+- [User Guide](#user-guide)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Props](#props)
+  - [Overrides](#overrides)
+  - [Options](#options)
+  - [CodeWrapperStyles](#codewrapperstyles)
+  - [Syntax Highlight](#syntax-highlight)
+- [Diagram Support](#diagram-support)
+- [NextJS](#nextjs)
+  - [Use with `useMDXComponents`](#use-with-usemdxcomponents)
+
 ## User Guide
 
 ### Installation
