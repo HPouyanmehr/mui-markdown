@@ -60,22 +60,25 @@ export default App;
 
 Props available for `MuiMarkdown` component:
 
-| Name              | Type                    | Default          | Optional or Mandatory |
-| ----------------- | ----------------------- | ---------------- | --------------------- |
-| key               | React.key               | -                | **optional**          |
-| children          | string                  | -                | **optional**          |
-| overrides*        | MarkdownToJSX.Overrides | defaultOverrides | **optional**          |
-| options*          | MarkdownToJSX.Options   | -                | **optional**          |
-| codeWrapperStyles | CSSProperties           | -                | **optional**          |
-| prismTheme        | PrismTheme              | vsDark           | **optional**          |
-| Highlight         | HighlightComponent      | -                | **optional**          |
-| themes            | HighlightThemes         | -                | **optional**          |
-| hideLineNumbers   | boolean                 | false            | **optional**          |
-| enableMermaid     | boolean                 | false            | **optional**          |
-| mermaidConfig     | MermaidConfig           | -                | **optional**          |
-| Diagram*          | DiagramComponent        | -                | **optional**          |
+| Name                 | Type                    | Default          | Optional or Mandatory |
+| -------------------- | ----------------------- | ---------------- | --------------------- |
+| key                  | React.key               | -                | **optional**          |
+| children             | string                  | -                | **optional**          |
+| overrides\*          | MarkdownToJSX.Overrides | defaultOverrides | **optional**          |
+| options\*            | MarkdownToJSX.Options   | -                | **optional**          |
+| codeWrapperStyles    | CSSProperties           | -                | **optional**          |
+| prismTheme           | PrismTheme              | vsDark           | **optional**          |
+| Highlight            | HighlightComponent      | -                | **optional**          |
+| customTableScrollbar | boolean                 | false            | **optional**          |
+| hideLineNumbers      | boolean                 | false            | **optional**          |
+| enableMermaid        | boolean                 | false            | **optional**          |
+| mermaidConfig        | MermaidConfig           | -                | **optional**          |
+| Diagram\*            | DiagramComponent        | -                | **optional**          |
 
-**NOTE:** You cannot use overrides and options at the same time.
+**NOTE:** You cannot use overrides and options at the same time
+
+**NOTE:** Using `customTableScrollbar` option convert table to a client side component.
+
 **NOTE:** You must provide the `Diagram` component if you've enabled the mermaid.
 
 ### overrides

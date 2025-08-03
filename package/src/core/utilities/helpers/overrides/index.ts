@@ -11,6 +11,7 @@ import { H6 } from '../../../components/display/typography/h6';
 import { InlineCode } from '../../../components/display/code';
 import { Link } from '../../../components/navigation/link';
 import { PreBlock, PreBlockWithDiagram } from '../../../components/display/pre';
+import { OrderedList } from '../../../components/display/list/ol';
 import { Span } from '../../../components/display/span';
 import { TableBody } from '../../../components/display/table/body';
 import { TableCell } from '../../../components/display/table/cell';
@@ -18,8 +19,8 @@ import { TableFooter } from '../../../components/display/table/footer';
 import { TableHead } from '../../../components/display/table/head';
 import { TableRow } from '../../../components/display/table/row';
 import { TableWrapper } from '../../../components/display/table/wrapper';
+import { TableWrapperClient } from '../../../components/display/table/wrapper/client';
 import { UnOrderedList } from '../../../components/display/list/ul';
-import { OrderedList } from '../../../components/display/list/ol';
 
 // Core Types
 import type { Overrides } from '../../../types';
@@ -53,14 +54,17 @@ export interface GetOverridesProps
   extends Omit<PreBlockWithDiagram, 'children' | 'enableMermaid'> {
   enableMermaid?: boolean;
   overrides?: Overrides;
+  customTableScrollbar?: boolean;
 }
 
 export const getOverrides = ({
   overrides,
+  customTableScrollbar,
   ...otherProps
 }: GetOverridesProps = {}): Overrides => ({
   ...defaultOverrides,
   ...overrides,
+  table: customTableScrollbar ? TableWrapperClient : TableWrapper,
   pre: {
     component: PreBlock,
     props: otherProps,

@@ -10,6 +10,7 @@ export type Options = MarkdownToJSX.Options;
 export interface MuiMarkdownRootProps
   extends Omit<PreBlockWithDiagram, 'enableMermaid'> {
   enableMermaid?: boolean;
+  customTableScrollbar?: boolean;
 }
 
 export interface MuiMarkdownWithOverrides extends MuiMarkdownRootProps {
