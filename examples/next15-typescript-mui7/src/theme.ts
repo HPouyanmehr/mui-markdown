@@ -6,6 +6,15 @@ const theme = createTheme({
   typography: {
     fontFamily: 'var(--font-roboto)',
   },
+  components: {
+    MuiTableCell: {
+      styleOverrides: {
+        root: {
+          color: 'white',
+        },
+      },
+    },
+  },
 });
 
 export default theme;

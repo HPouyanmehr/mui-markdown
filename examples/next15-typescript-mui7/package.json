@@ -14,7 +14,8 @@
     "@emotion/styled": "^11.14.0",
     "@mui/material": "^7.0.1",
     "@mui/material-nextjs": "^7.0.0",
-    "mui-markdown": "^1.2.6",
+    "markdown-to-jsx": "^7.7.12",
+    "mui-markdown": "^2.0.3",
     "next": "15.2.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

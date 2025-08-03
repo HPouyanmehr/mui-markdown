@@ -5,6 +5,12 @@ import styles from './page.module.css';
 
 const markdown = `## Mui Markdown
 ### Heading Three
+
+| Column One | Column Two (Number) | Column Three |
+| ---------- | ------------------- | ------------ |
+| A          | 1                   | B            |
+| C          | 2                   | Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ab repellat quod quae excepturi vel voluptas dignissimos? Maxime consequuntur facere quidem.            |
+
 `;
 
 export default function Home() {
