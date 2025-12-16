@@ -44,7 +44,8 @@ export const PreBlock = (props: PreBlockProps) => {
     children &&
     children.props &&
     children.props.className &&
-    children.props.className.startsWith('lang-')
+    (children.props.className.startsWith('language-') ||
+      children.props.className.includes(' lang-'))
   ) {
     const code = children.props.children;
     const lang = children.props.className
