@@ -48,9 +48,8 @@ export const PreBlock = (props: PreBlockProps) => {
       children.props.className.includes(' lang-'))
   ) {
     const code = children.props.children;
-    const lang = children.props.className
-      ? children.props.className.replace('lang-', '')
-      : 'tsx';
+    const lang =
+      children.props.className?.match(/(?:language-|lang-)(\w+)/)?.[1] || 'tsx';
 
     if ('enableMermaid' in props && props.enableMermaid && lang === 'mermaid') {
       if (
