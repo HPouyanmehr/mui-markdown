@@ -1,4 +1,5 @@
-import type { CSSProperties, JSX, ReactNode } from 'react';
+import type { ComponentType, CSSProperties, JSX, ReactNode } from 'react';
+import type { TypographyProps, SxProps, Theme } from '@mui/material';
 
 // Core Components
 import { Box } from '../../layout/box';
@@ -18,6 +19,9 @@ import type {
   PrismTheme,
 } from '../../../../features/highlight/types';
 
+// Feature Types
+import type { CopyComponentProps } from '../../../../features/highlight/components/display/codeBlock';
+
 // Module Types
 interface PreBlockCore {
   Highlight?: HighlightComponent;
@@ -26,6 +30,27 @@ interface PreBlockCore {
   prismTheme?: PrismTheme;
   styles?: CSSProperties;
   children: ReactNode | any;
+  // Enhanced code block features
+  name?: string;
+  copiable?: boolean;
+  // Copy button customization
+  CopyComponent?: ComponentType<CopyComponentProps>;
+  copiedLabel?: string;
+  copyLabel?: string;
+  copyIcon?: ReactNode;
+  copiedIcon?: ReactNode;
+  copyButtonSx?: SxProps<Theme>;
+  // File name customization
+  showFileIcon?: boolean;
+  fileIcon?: ReactNode;
+  FileNameComponent?: ComponentType<TypographyProps>;
+  fileNameSx?: SxProps<Theme>;
+  fileNameWrapperSx?: SxProps<Theme>;
+  useHighlightThemeBackground?: boolean;
+  // Color customization from theme
+  highlightColor?: string;
+  removedColor?: string;
+  insertedColor?: string;
 }
 
 export interface PreBlockWithDiagram
@@ -37,8 +62,31 @@ export interface PreBlockWithDiagram
 type PreBlockProps = PreBlockCore | PreBlockWithDiagram;
 
 export const PreBlock = (props: PreBlockProps) => {
-  const { children, Highlight, themes, prismTheme, styles, hideLineNumbers } =
-    props;
+  const {
+    children,
+    Highlight,
+    themes,
+    prismTheme,
+    styles,
+    hideLineNumbers,
+    name,
+    copiable,
+    CopyComponent,
+    copiedLabel,
+    copyLabel,
+    copyIcon,
+    copiedIcon,
+    copyButtonSx,
+    showFileIcon,
+    fileIcon,
+    FileNameComponent,
+    fileNameSx,
+    fileNameWrapperSx,
+    useHighlightThemeBackground,
+    highlightColor,
+    removedColor,
+    insertedColor,
+  } = props;
 
   if (
     children &&
@@ -81,8 +129,25 @@ export const PreBlock = (props: PreBlockProps) => {
           theme={prismTheme}
           styles={styles}
           hideLineNumbers={hideLineNumbers}
+          name={name}
+          copiable={copiable}
+          CopyComponent={CopyComponent}
+          copiedLabel={copiedLabel}
+          copyLabel={copyLabel}
+          copyIcon={copyIcon}
+          copiedIcon={copiedIcon}
+          copyButtonSx={copyButtonSx}
+          showFileIcon={showFileIcon}
+          fileIcon={fileIcon}
+          FileNameComponent={FileNameComponent}
+          fileNameSx={fileNameSx}
+          fileNameWrapperSx={fileNameWrapperSx}
+          useHighlightThemeBackground={useHighlightThemeBackground}
+          highlightColor={highlightColor}
+          removedColor={removedColor}
+          insertedColor={insertedColor}
         >
-          {code}
+          {children}
         </HighlightCodeBlock>
       );
     }

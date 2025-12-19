@@ -16,6 +16,7 @@ export type { Options, Overrides, MuiMarkdownProps } from './core/types';
 // Feature Types
 export type { PrismTheme } from './features/highlight/types';
 export type { DiagramProps } from './features/diagram/components/mermaid/type';
+export type { CopyComponentProps } from './features/highlight/components/display/codeBlock';
 
 // MUI Markdown
 export default MuiMarkdown;

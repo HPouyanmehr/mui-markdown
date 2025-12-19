@@ -1,6 +1,6 @@
 {
   "name": "mui-markdown",
-  "version": "2.0.5",
+  "version": "2.1.0",
   "private": false,
   "description": "mui-markdown uses markdown-to-jsx and MUI(formerly material-ui) to help you render MD/MDX files with MUI components.",
   "license": "MIT",
