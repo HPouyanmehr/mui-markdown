@@ -39,6 +39,7 @@ export default {
       exports: 'named',
       entryFileNames: '[name].js',
       sourcemap: true,
+      interop: 'auto',
     },
     {
       dir: './dist',
