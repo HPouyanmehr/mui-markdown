@@ -9,8 +9,13 @@ import { H4 } from '../../../components/display/typography/h4';
 import { H5 } from '../../../components/display/typography/h5';
 import { H6 } from '../../../components/display/typography/h6';
 import { InlineCode } from '../../../components/display/code';
+import { TaskListCheckbox } from '../../../components/input/checkbox';
 import { Link } from '../../../components/navigation/link';
-import { PreBlock, PreBlockWithDiagram } from '../../../components/display/pre';
+import {
+  PreBlock,
+  PreBlockWithDiagram,
+  PreBlockWithMath,
+} from '../../../components/display/pre';
 import { OrderedList } from '../../../components/display/list/ol';
 import { Span } from '../../../components/display/span';
 import { TableBody } from '../../../components/display/table/body';
@@ -36,6 +41,7 @@ export const defaultOverrides: Overrides = {
   h5: H5,
   h6: H6,
   hr: Divider,
+  input: TaskListCheckbox,
   ol: OrderedList,
   p: Body1,
   pre: PreBlock,
@@ -51,8 +57,10 @@ export const defaultOverrides: Overrides = {
 };
 
 export interface GetOverridesProps
-  extends Omit<PreBlockWithDiagram, 'children' | 'enableMermaid'> {
+  extends Omit<PreBlockWithDiagram, 'children' | 'enableMermaid'>,
+    Omit<PreBlockWithMath, 'children' | 'enableMath'> {
   enableMermaid?: boolean;
+  enableMath?: boolean;
   overrides?: Overrides;
   customTableScrollbar?: boolean;
 }

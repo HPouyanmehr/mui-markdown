@@ -1,5 +1,4 @@
-import type { FC } from 'react';
-import MarkdownRoot from 'markdown-to-jsx';
+import MarkdownRoot from 'markdown-to-jsx/react';
 
 // Core Utilities
 import { useOptions } from '../../../utilities/hooks/options';

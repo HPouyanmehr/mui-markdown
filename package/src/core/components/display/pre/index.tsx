@@ -14,6 +14,10 @@ import type {
   DiagramWithMermaid,
 } from '../../../../features/diagram/components/mermaid/type';
 import type {
+  MathBlockProps,
+  MathWithKatex,
+} from '../../../../features/math/components/katex/type';
+import type {
   HighlightComponent,
   HighlightThemes,
   PrismTheme,
@@ -59,7 +63,13 @@ export interface PreBlockWithDiagram
   DiagramComponent?: (props: DiagramProps) => JSX.Element;
 }
 
-type PreBlockProps = PreBlockCore | PreBlockWithDiagram;
+export interface PreBlockWithMath
+  extends PreBlockCore,
+    Omit<MathWithKatex, 'children'> {
+  MathComponent?: (props: MathBlockProps) => JSX.Element;
+}
+
+type PreBlockProps = PreBlockCore | PreBlockWithDiagram | PreBlockWithMath;
 
 export const PreBlock = (props: PreBlockProps) => {
   const {
@@ -116,6 +126,20 @@ export const PreBlock = (props: PreBlockProps) => {
       } else {
         console.error(
           "Make sure you've passed the Diagram component to the MuiMarkdown properly, you can import it from 'mui-markdown/Diagram'."
+        );
+      }
+    }
+
+    if ('enableMath' in props && props.enableMath && lang === 'math') {
+      if ('MathComponent' in props && props.MathComponent) {
+        return (
+          <props.MathComponent enableMath katexOptions={props.katexOptions}>
+            {code}
+          </props.MathComponent>
+        );
+      } else {
+        console.error(
+          "Make sure you've passed the MathBlock component to the MuiMarkdown properly, you can import it from 'mui-markdown/client'."
         );
       }
     }

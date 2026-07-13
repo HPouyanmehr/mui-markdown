@@ -88,7 +88,8 @@ export const extractCodeBlockProps = (
   }
 
   // Extract hideLineNumbers flag - override className extraction if prop exists
-  if ('hidelinenumbers' in props) {
+  // (markdown-to-jsx v9 preserves attribute casing, v7 lowercased it)
+  if ('hidelinenumbers' in props || 'hideLineNumbers' in props) {
     defaultProps.hideLineNumbers = true;
   }
 

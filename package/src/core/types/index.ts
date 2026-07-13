@@ -1,15 +1,20 @@
-import type { MarkdownToJSX } from 'markdown-to-jsx';
+import type { MarkdownToJSX } from 'markdown-to-jsx/react';
 
 // Core Types
-import type { PreBlockWithDiagram } from '../components/display/pre';
+import type {
+  PreBlockWithDiagram,
+  PreBlockWithMath,
+} from '../components/display/pre';
 
 // Module Types
 export type Overrides = MarkdownToJSX.Overrides;
 export type Options = MarkdownToJSX.Options;
 
 export interface MuiMarkdownRootProps
-  extends Omit<PreBlockWithDiagram, 'enableMermaid'> {
+  extends Omit<PreBlockWithDiagram, 'enableMermaid'>,
+    Omit<PreBlockWithMath, 'enableMath'> {
   enableMermaid?: boolean;
+  enableMath?: boolean;
   customTableScrollbar?: boolean;
 }
 
