@@ -11,6 +11,9 @@ Using `mui-markdown`:
 - Markdown components will adapt to theme automatically
 - Optional Syntax Highlight Support using `prism-react-renderer`
 - Optional Diagrams Support using `mermaid`
+- Optional Math Support using `katex`
+- Table of Contents extraction with `extractHeadings`
+- GFM task lists rendered with MUI `Checkbox` and native footnote support
 
 ## Table of Contents
 
@@ -24,6 +27,8 @@ Using `mui-markdown`:
   - [Syntax Highlight](#syntax-highlight)
   - [Enhanced Code Block Features](#enhanced-code-block-features)
 - [Diagram Support](#diagram-support)
+- [Math Support](#math-support)
+- [Table of Contents Extraction](#table-of-contents-extraction)
 - [NextJS](#nextjs)
   - [Use with `useMDXComponents`](#use-with-usemdxcomponents)
 
@@ -38,6 +43,8 @@ npm i mui-markdown@latest
 # with yarn
 yarn add mui-markdown
 ```
+
+**Note:** `mui-markdown` v3 requires `markdown-to-jsx` v9 or newer as a peer dependency. See the [CHANGELOG](https://github.com/HPouyanmehr/mui-markdown/blob/main/CHANGELOG.md) for migration notes if you're upgrading from v2.
 
 ### Usage
 
@@ -92,12 +99,17 @@ Props available for `MuiMarkdown` component:
 | enableMermaid               | boolean                           | false            | **optional**          |
 | mermaidConfig               | MermaidConfig                     | -                | **optional**          |
 | Diagram\*                   | DiagramComponent                  | -                | **optional**          |
+| enableMath                  | boolean                           | false            | **optional**          |
+| katexOptions                | KatexOptions                      | -                | **optional**          |
+| MathComponent\*             | MathBlockComponent                | -                | **optional**          |
 
 **NOTE:** You cannot use overrides and options at the same time
 
 **NOTE:** Using `customTableScrollbar` option convert table to a client side component.
 
 **NOTE:** You must provide the `Diagram` component if you've enabled the mermaid.
+
+**NOTE:** You must provide the `MathComponent` if you've enabled the math support.
 
 ### overrides
 
@@ -579,6 +591,82 @@ const App = () => {
 
 export default App;
 ```
+
+## Math Support
+
+`mui-markdown` uses [`katex`](https://github.com/KaTeX/KaTeX) to render math blocks. This is an optional dependency, so install it first:
+
+```bash
+# with npm
+npm i katex
+
+# with yarn
+yarn add katex
+```
+
+Then enable it with the `enableMath` prop and pass the `MathBlock` component (or your own component satisfying `(props: MathBlockProps) => JSX.Element`). Don't forget to include the KaTeX stylesheet.
+
+````tsx
+import React from 'react';
+import { MuiMarkdown } from 'mui-markdown';
+import { MathBlock } from 'mui-markdown/client'; // This component lazy-loads katex on the client
+import 'katex/dist/katex.min.css';
+
+const App = () => {
+  return (
+    <MuiMarkdown enableMath MathComponent={MathBlock}>
+      {`
+\`\`\`math
+E = mc^2
+\`\`\`
+`}
+    </MuiMarkdown>
+  );
+};
+
+export default App;
+````
+
+Math blocks are written as fenced code blocks with the `math` language. You can pass [KaTeX options](https://katex.org/docs/options.html) via the `katexOptions` prop. Without `enableMath`, `math` blocks render as regular code blocks, so nothing changes unless you opt in.
+
+## Table of Contents Extraction
+
+Use `extractHeadings` to get the list of headings (text, level, and the same anchor `id` that `MuiMarkdown` renders) and build your own table of contents:
+
+```tsx
+import React from 'react';
+import { Link, List, ListItem } from '@mui/material';
+import { MuiMarkdown, extractHeadings } from 'mui-markdown';
+
+const markdown = `
+# Getting Started
+
+## Installation
+
+## Usage
+`;
+
+const App = () => {
+  const headings = extractHeadings(markdown);
+
+  return (
+    <>
+      <List>
+        {headings.map((heading) => (
+          <ListItem key={heading.id} sx={{ pl: heading.level * 2 }}>
+            <Link href={`#${heading.id}`}>{heading.text}</Link>
+          </ListItem>
+        ))}
+      </List>
+      <MuiMarkdown>{markdown}</MuiMarkdown>
+    </>
+  );
+};
+
+export default App;
+```
+
+`extractHeadings` is a pure function (no rendering), so you can also use it on the server or at build time.
 
 ## NextJS
 
