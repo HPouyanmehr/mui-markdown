@@ -1,0 +1,901 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>mui-markdown — Render Markdown with MUI components</title>
+<meta name="description" content="mui-markdown uses markdown-to-jsx and MUI to help you render MD/MDX files with MUI components. Syntax highlighting, diagrams, math, and more." />
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-soft: #f6f8fa;
+    --fg: #1f2328;
+    --fg-soft: #59636e;
+    --border: #d1d9e0;
+    --accent: #0969da;
+    --accent-soft: #ddf4ff;
+    --code-bg: #f6f8fa;
+    --sidebar-w: 260px;
+    --radius: 8px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0d1117;
+      --bg-soft: #161b22;
+      --fg: #e6edf3;
+      --fg-soft: #9198a1;
+      --border: #30363d;
+      --accent: #4493f8;
+      --accent-soft: #121d2f;
+      --code-bg: #161b22;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  /* Themed scrollbars */
+  * { scrollbar-color: var(--border) transparent; scrollbar-width: thin; }
+  *::-webkit-scrollbar { width: 10px; height: 10px; }
+  *::-webkit-scrollbar-track { background: transparent; }
+  *::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 6px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  *::-webkit-scrollbar-thumb:hover { background-color: var(--fg-soft); background-clip: content-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--fg);
+    background: var(--bg);
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* Header */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+  header .logo { font-weight: 700; font-size: 18px; color: var(--fg); }
+  header .logo span { color: var(--accent); }
+  header .version {
+    font-size: 12px;
+    font-weight: 600;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 1px 8px;
+  }
+  header .spacer { flex: 1; }
+  header .links { display: flex; align-items: center; gap: 8px; }
+  header .links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    color: var(--fg-soft);
+  }
+  header .links a:hover { color: var(--accent); background: var(--bg-soft); }
+  header .links svg { width: 20px; height: 20px; fill: currentColor; }
+  #menu-btn {
+    display: none;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--fg);
+    padding: 6px 10px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  /* Layout */
+  .layout { display: flex; max-width: 1200px; margin: 0 auto; }
+  nav.sidebar {
+    width: var(--sidebar-w);
+    flex-shrink: 0;
+    position: sticky;
+    top: 57px;
+    align-self: flex-start;
+    height: calc(100vh - 57px);
+    overflow-y: auto;
+    padding: 24px 12px 48px 20px;
+    border-right: 1px solid var(--border);
+  }
+  nav.sidebar .cat {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--fg-soft);
+    margin: 20px 0 6px 8px;
+  }
+  nav.sidebar .cat:first-child { margin-top: 0; }
+  nav.sidebar a {
+    display: block;
+    padding: 5px 8px;
+    border-radius: 6px;
+    color: var(--fg);
+    font-size: 14px;
+  }
+  nav.sidebar a:hover { background: var(--bg-soft); text-decoration: none; }
+  nav.sidebar a.active { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+
+  main {
+    flex: 1;
+    min-width: 0;
+    padding: 32px 32px 96px;
+  }
+  main section { scroll-margin-top: 72px; }
+
+  h1 { font-size: 34px; margin: 0 0 8px; line-height: 1.2; }
+  h2 {
+    font-size: 24px;
+    margin: 48px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  h3 { font-size: 18px; margin: 28px 0 8px; }
+  p { margin: 10px 0; }
+  .lead { font-size: 18px; color: var(--fg-soft); margin-bottom: 20px; }
+
+  .badges { display: flex; gap: 6px; flex-wrap: wrap; margin: 14px 0 24px; }
+  .badges img { height: 20px; }
+
+  ul.features { padding-left: 22px; }
+  ul.features li { margin: 6px 0; }
+
+  .callout {
+    display: flex;
+    gap: 10px;
+    padding: 12px 16px;
+    margin: 16px 0;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: var(--radius);
+    background: var(--bg-soft);
+    font-size: 14.5px;
+  }
+  .callout strong { color: var(--accent); }
+
+  /* Code blocks */
+  .code {
+    position: relative;
+    margin: 14px 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--code-bg);
+    overflow: hidden;
+  }
+  .code .code-head {
+    display: flex;
+    align-items: center;
+    padding: 6px 12px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+    color: var(--fg-soft);
+    border-bottom: 1px solid var(--border);
+  }
+  .code pre {
+    margin: 0;
+    padding: 14px 16px;
+    overflow-x: auto;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    line-height: 1.55;
+  }
+  .code .copy {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    padding: 4px 10px;
+    font-size: 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg);
+    color: var(--fg-soft);
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.15s;
+  }
+  .code:hover .copy { opacity: 1; }
+  .code .copy:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* Tables */
+  .table-wrap { overflow-x: auto; margin: 14px 0; border: 1px solid var(--border); border-radius: var(--radius); }
+  table { border-collapse: collapse; width: 100%; font-size: 14px; }
+  th, td { padding: 8px 14px; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  td:last-child, th:last-child { white-space: normal; min-width: 200px; }
+  th { background: var(--bg-soft); font-weight: 600; }
+  tr:last-child td { border-bottom: none; }
+  code {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.9em;
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1px 5px;
+  }
+  .code code, .code-head code { background: none; border: none; padding: 0; }
+
+  /* Cards on landing */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+    margin: 24px 0;
+  }
+  .cards a {
+    display: block;
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--fg);
+  }
+  .cards a:hover { border-color: var(--accent); text-decoration: none; }
+  .cards .t { font-weight: 600; margin-bottom: 4px; color: var(--accent); }
+  .cards .d { font-size: 13.5px; color: var(--fg-soft); }
+
+  /* Contributors */
+  .contributors { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 24px; }
+  .contributors img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  .contributors a:hover img { border-color: var(--accent); transform: scale(1.08); }
+
+  footer {
+    padding: 24px 32px;
+    border-top: 1px solid var(--border);
+    color: var(--fg-soft);
+    font-size: 14px;
+    text-align: center;
+  }
+
+  /* Mobile */
+  @media (max-width: 860px) {
+    #menu-btn { display: block; }
+    nav.sidebar {
+      position: fixed;
+      left: 0;
+      top: 57px;
+      background: var(--bg);
+      transform: translateX(-100%);
+      transition: transform 0.2s;
+      z-index: 15;
+      box-shadow: 4px 0 16px rgba(0,0,0,0.15);
+    }
+    nav.sidebar.open { transform: translateX(0); }
+    main { padding: 24px 16px 64px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <button id="menu-btn" aria-label="Toggle navigation">☰</button>
+  <a class="logo" href="#about">mui-<span>markdown</span></a>
+  <span class="version">v3.0.0</span>
+  <div class="spacer"></div>
+  <div class="links">
+    <a href="https://www.npmjs.com/package/mui-markdown" target="_blank" rel="noopener" title="npm" aria-label="npm">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M0 7.334v8h6.666v1.332H12v-1.332h12v-8H0zm6.666 6.664H5.334v-4H3.999v4H1.335V8.667h5.331v5.331zm4 0v1.336H8.001V8.667h5.334v5.332h-2.669v-.001zm12.001 0h-1.33v-4h-1.336v4h-1.335v-4h-1.33v4h-2.671V8.667h8.002v5.331z"/></svg>
+    </a>
+    <a href="https://github.com/HPouyanmehr/mui-markdown" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+  </div>
+</header>
+
+<div class="layout">
+
+<nav class="sidebar" id="sidebar">
+  <div class="cat">Getting Started</div>
+  <a href="#about">About</a>
+  <a href="#installation">Installation</a>
+  <a href="#quick-start">Quick Start</a>
+
+  <div class="cat">Core API</div>
+  <a href="#props">Props</a>
+  <a href="#overrides">Overrides</a>
+  <a href="#options">Options</a>
+  <a href="#code-wrapper-styles">Code Wrapper Styles</a>
+
+  <div class="cat">Code Blocks</div>
+  <a href="#syntax-highlight">Syntax Highlight</a>
+  <a href="#enhanced-code-blocks">Enhanced Features</a>
+  <a href="#global-configuration">Global Configuration</a>
+  <a href="#customization">Customization</a>
+
+  <div class="cat">Extras</div>
+  <a href="#diagrams">Diagrams (Mermaid)</a>
+  <a href="#math">Math (KaTeX)</a>
+  <a href="#toc-extraction">TOC Extraction</a>
+
+  <div class="cat">Frameworks</div>
+  <a href="#nextjs">Next.js</a>
+</nav>
+
+<main>
+
+<!-- ============ GETTING STARTED ============ -->
+<section id="about">
+  <h1>mui-markdown</h1>
+  <p class="lead">Render Markdown / MDX with <a href="https://mui.com" target="_blank" rel="noopener">MUI</a> components — powered by <a href="https://github.com/quantizor/markdown-to-jsx" target="_blank" rel="noopener">markdown-to-jsx</a>.</p>
+
+  <div class="badges">
+    <img src="https://img.shields.io/npm/v/mui-markdown?color=0969da" alt="npm version" />
+    <img src="https://img.shields.io/npm/dm/mui-markdown" alt="npm downloads" />
+    <img src="https://img.shields.io/github/license/HPouyanmehr/mui-markdown" alt="license" />
+  </div>
+
+  <ul class="features">
+    <li>Markdown components adapt to your MUI theme automatically</li>
+    <li>Optional syntax highlighting via <code>prism-react-renderer</code></li>
+    <li>Optional diagram support via <code>mermaid</code></li>
+    <li>Optional math support via <code>katex</code></li>
+    <li>Table of contents extraction with <code>extractHeadings</code></li>
+    <li>GFM task lists rendered with MUI <code>Checkbox</code>, plus native footnote support</li>
+  </ul>
+
+  <h3>Contributors</h3>
+  <div class="contributors">
+    <a href="https://github.com/HPouyanmehr" target="_blank" rel="noopener" title="Hosein Pouyanmehr"><img src="https://github.com/HPouyanmehr.png?size=96" alt="Hosein Pouyanmehr" loading="lazy" /></a>
+    <a href="https://github.com/Et3rnos" target="_blank" rel="noopener" title="Et3rnos"><img src="https://github.com/Et3rnos.png?size=96" alt="Et3rnos" loading="lazy" /></a>
+    <a href="https://github.com/ardeaf" target="_blank" rel="noopener" title="ardeaf"><img src="https://github.com/ardeaf.png?size=96" alt="ardeaf" loading="lazy" /></a>
+    <a href="https://github.com/grajdeanserghei" target="_blank" rel="noopener" title="SGrajdean"><img src="https://github.com/grajdeanserghei.png?size=96" alt="SGrajdean" loading="lazy" /></a>
+    <a href="https://github.com/marcveens" target="_blank" rel="noopener" title="marcveens"><img src="https://github.com/marcveens.png?size=96" alt="marcveens" loading="lazy" /></a>
+    <a href="https://github.com/alfredosalzillo" target="_blank" rel="noopener" title="Alfredo Salzillo"><img src="https://github.com/alfredosalzillo.png?size=96" alt="Alfredo Salzillo" loading="lazy" /></a>
+    <a href="https://github.com/Firgrep" target="_blank" rel="noopener" title="Filip Niklas"><img src="https://github.com/Firgrep.png?size=96" alt="Filip Niklas" loading="lazy" /></a>
+    <a href="https://github.com/micttyoid" target="_blank" rel="noopener" title="Luke Yoo"><img src="https://github.com/micttyoid.png?size=96" alt="Luke Yoo" loading="lazy" /></a>
+  </div>
+
+  <div class="cards">
+    <a href="#installation"><div class="t">Install →</div><div class="d">Add mui-markdown to your project in one command.</div></a>
+    <a href="#quick-start"><div class="t">Quick Start →</div><div class="d">Render your first markdown in three lines.</div></a>
+    <a href="#enhanced-code-blocks"><div class="t">Code Blocks →</div><div class="d">Line highlighting, diffs, file names, copy buttons.</div></a>
+    <a href="#diagrams"><div class="t">Extras →</div><div class="d">Mermaid diagrams, KaTeX math, TOC extraction.</div></a>
+  </div>
+</section>
+
+<section id="installation">
+  <h2>Installation</h2>
+  <div class="code"><button class="copy">Copy</button><pre># with npm
+npm i mui-markdown@latest
+
+# with yarn
+yarn add mui-markdown</pre></div>
+  <div class="callout"><div><strong>Note:</strong> <code>mui-markdown</code> v3 requires <code>markdown-to-jsx</code> v9 or newer as a peer dependency. See the <a href="https://github.com/HPouyanmehr/mui-markdown/blob/main/CHANGELOG.md" target="_blank" rel="noopener">CHANGELOG</a> for migration notes if you're upgrading from v2.</div></div>
+</section>
+
+<section id="quick-start">
+  <h2>Quick Start</h2>
+  <p>The example below renders the <code>h1</code> tag using the MUI <code>Typography</code> component.</p>
+  <div class="code"><div class="code-head"><code>App.jsx</code></div><button class="copy">Copy</button><pre>import React from 'react';
+import { MuiMarkdown } from 'mui-markdown';
+
+const App = () =&gt; {
+  return &lt;MuiMarkdown&gt;{`# Hello markdown!`}&lt;/MuiMarkdown&gt;;
+};
+
+export default App;</pre></div>
+  <p>A default export is also available (<code>import MuiMarkdown from 'mui-markdown'</code>), but the named import is recommended.</p>
+</section>
+
+<!-- ============ CORE API ============ -->
+<section id="props">
+  <h2>Props</h2>
+  <p>Props available on the <code>MuiMarkdown</code> component. All props are optional.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Name</th><th>Type</th><th>Default</th></tr></thead>
+      <tbody>
+        <tr><td><code>key</code></td><td>React.key</td><td>-</td></tr>
+        <tr><td><code>children</code></td><td>string</td><td>-</td></tr>
+        <tr><td><code>overrides</code>*</td><td>MarkdownToJSX.Overrides</td><td>defaultOverrides</td></tr>
+        <tr><td><code>options</code>*</td><td>MarkdownToJSX.Options</td><td>-</td></tr>
+        <tr><td><code>codeWrapperStyles</code></td><td>CSSProperties</td><td>-</td></tr>
+        <tr><td><code>prismTheme</code></td><td>PrismTheme</td><td>vsDark</td></tr>
+        <tr><td><code>Highlight</code></td><td>HighlightComponent</td><td>-</td></tr>
+        <tr><td><code>customTableScrollbar</code></td><td>boolean</td><td>false</td></tr>
+        <tr><td><code>hideLineNumbers</code></td><td>boolean</td><td>false</td></tr>
+        <tr><td><code>name</code></td><td>string</td><td>-</td></tr>
+        <tr><td><code>copiable</code></td><td>boolean</td><td>false</td></tr>
+        <tr><td><code>CopyComponent</code></td><td>ComponentType&lt;CopyComponentProps&gt;</td><td>-</td></tr>
+        <tr><td><code>copiedLabel</code></td><td>string</td><td>'Copied!'</td></tr>
+        <tr><td><code>copyLabel</code></td><td>string</td><td>'Copy code'</td></tr>
+        <tr><td><code>copyIcon</code></td><td>ReactNode</td><td>-</td></tr>
+        <tr><td><code>copiedIcon</code></td><td>ReactNode</td><td>-</td></tr>
+        <tr><td><code>copyButtonSx</code></td><td>SxProps&lt;Theme&gt;</td><td>-</td></tr>
+        <tr><td><code>showFileIcon</code></td><td>boolean</td><td>true</td></tr>
+        <tr><td><code>fileIcon</code></td><td>ReactNode</td><td>-</td></tr>
+        <tr><td><code>FileNameComponent</code></td><td>ComponentType</td><td>Typography</td></tr>
+        <tr><td><code>fileNameSx</code></td><td>SxProps&lt;Theme&gt;</td><td>-</td></tr>
+        <tr><td><code>fileNameWrapperSx</code></td><td>SxProps&lt;Theme&gt;</td><td>-</td></tr>
+        <tr><td><code>useHighlightThemeBackground</code></td><td>boolean</td><td>false</td></tr>
+        <tr><td><code>highlightColor</code></td><td>string</td><td>'info.main'</td></tr>
+        <tr><td><code>removedColor</code></td><td>string</td><td>'error.main'</td></tr>
+        <tr><td><code>insertedColor</code></td><td>string</td><td>'success.main'</td></tr>
+        <tr><td><code>enableMermaid</code></td><td>boolean</td><td>false</td></tr>
+        <tr><td><code>mermaidConfig</code></td><td>MermaidConfig</td><td>-</td></tr>
+        <tr><td><code>Diagram</code>*</td><td>DiagramComponent</td><td>-</td></tr>
+        <tr><td><code>enableMath</code></td><td>boolean</td><td>false</td></tr>
+        <tr><td><code>katexOptions</code></td><td>KatexOptions</td><td>-</td></tr>
+        <tr><td><code>MathComponent</code>*</td><td>MathBlockComponent</td><td>-</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout"><div>
+    <strong>Notes:</strong>
+    You cannot use <code>overrides</code> and <code>options</code> at the same time.
+    Using <code>customTableScrollbar</code> converts tables to client-side components.
+    You must provide the <code>Diagram</code> component if you've enabled mermaid,
+    and the <code>MathComponent</code> if you've enabled math support.
+  </div></div>
+</section>
+
+<section id="overrides">
+  <h2>Overrides</h2>
+  <p>Optionally override any tag to use your own component. Spread <code>defaultOverrides</code> to keep the other default overrides.</p>
+
+  <h3>Override with a regular HTML tag</h3>
+  <div class="code"><div class="code-head"><code>App.tsx</code></div><button class="copy">Copy</button><pre>import React from 'react';
+import { MuiMarkdown, defaultOverrides } from 'mui-markdown';
+
+const App = () =&gt; {
+  return (
+    &lt;MuiMarkdown
+      overrides={{
+        ...defaultOverrides, // Keeps the other default overrides.
+        h1: {
+          component: 'p',
+          props: {
+            style: { color: 'red' },
+          } as React.HTMLProps&lt;HTMLParagraphElement&gt;,
+        },
+      }}
+    &gt;
+      {`# Hello markdown!`}
+    &lt;/MuiMarkdown&gt;
+  );
+};
+
+export default App;</pre></div>
+  <p>In plain JS/JSX, drop the <code>as React.HTMLProps&lt;...&gt;</code> assertion.</p>
+
+  <h3>Override with your own component</h3>
+  <div class="code"><div class="code-head"><code>App.tsx</code></div><button class="copy">Copy</button><pre>import React from 'react';
+import { MuiMarkdown, defaultOverrides } from 'mui-markdown';
+import CustomTypography, {
+  CustomTypographyProps,
+} from './components/CustomTypography';
+
+const App = () =&gt; {
+  return (
+    &lt;MuiMarkdown
+      overrides={{
+        ...defaultOverrides, // Keeps the other default overrides.
+        h1: {
+          component: CustomTypography,
+          props: {
+            // custom props
+          } as CustomTypographyProps,
+        },
+      }}
+    &gt;
+      {`# Hello markdown!`}
+    &lt;/MuiMarkdown&gt;
+  );
+};
+
+export default App;</pre></div>
+</section>
+
+<section id="options">
+  <h2>Options</h2>
+  <p>Parsing options are passed straight through to <code>markdown-to-jsx</code> — see its <a href="https://www.npmjs.com/package/markdown-to-jsx#parsing-options" target="_blank" rel="noopener">parsing options documentation</a>.</p>
+  <div class="callout"><div><strong>Note:</strong> If you need both overrides and options, put the <code>overrides</code> property inside <code>options</code>. Don't use the <code>overrides</code> and <code>options</code> props together on the <code>MuiMarkdown</code> component.</div></div>
+</section>
+
+<section id="code-wrapper-styles">
+  <h2>Code Wrapper Styles</h2>
+  <p>Pass your desired styles for the syntax highlighter component via <code>codeWrapperStyles</code>. These are the defaults:</p>
+  <div class="code"><button class="copy">Copy</button><pre>borderRadius: '0.5rem',
+padding: '0.5rem 0.75rem',
+overflow: 'auto',</pre></div>
+</section>
+
+<!-- ============ CODE BLOCKS ============ -->
+<section id="syntax-highlight">
+  <h2>Syntax Highlight</h2>
+  <p><code>mui-markdown</code> uses <a href="https://github.com/FormidableLabs/prism-react-renderer" target="_blank" rel="noopener">prism-react-renderer</a> to highlight code blocks. It's an optional dependency — install it only if you want highlighting:</p>
+  <div class="code"><button class="copy">Copy</button><pre># with npm
+npm i prism-react-renderer
+
+# with yarn
+yarn add prism-react-renderer</pre></div>
+
+  <p>Then pass <code>Highlight</code> and <code>themes</code> to the component. Change the theme with <code>prismTheme</code>, and hide line numbers with <code>hideLineNumbers</code>:</p>
+  <div class="code"><div class="code-head"><code>App.tsx</code></div><button class="copy">Copy</button><pre>import React from 'react';
+import { MuiMarkdown } from 'mui-markdown';
+import { Highlight, themes } from 'prism-react-renderer';
+
+const App = () =&gt; {
+  return (
+    &lt;MuiMarkdown
+      Highlight={Highlight}
+      themes={themes}
+      prismTheme={themes.github}
+      hideLineNumbers
+    &gt;
+      {`# Hello markdown!`}
+    &lt;/MuiMarkdown&gt;
+  );
+};
+
+export default App;</pre></div>
+
+  <p>When using overrides, get highlighting by passing <code>Highlight</code>, <code>themes</code>, and your theme to <code>getOverrides</code>:</p>
+  <div class="code"><div class="code-head"><code>App.tsx</code></div><button class="copy">Copy</button><pre>import React from 'react';
+import { MuiMarkdown, getOverrides } from 'mui-markdown';
+import { Highlight, themes } from 'prism-react-renderer';
+
+const App = () =&gt; {
+  return (
+    &lt;MuiMarkdown
+      overrides={{
+        ...getOverrides({ Highlight, themes, theme: themes.github }),
+        h1: {
+          component: 'p',
+          props: {
+            style: { color: 'red' },
+          },
+        },
+      }}
+    &gt;
+      {`# Hello markdown!`}
+    &lt;/MuiMarkdown&gt;
+  );
+};
+
+export default App;</pre></div>
+</section>
+
+<section id="enhanced-code-blocks">
+  <h2>Enhanced Code Block Features</h2>
+  <p>Advanced code block features for better documentation and code presentation.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Feature</th><th>Markdown Attribute</th><th>Global Prop</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td>Line Highlighting</td><td><code>highlighted="1,3-5"</code></td><td>-</td><td>Highlights specific lines with blue background</td></tr>
+        <tr><td>Removed Lines</td><td><code>removed="2,4"</code></td><td>-</td><td>Shows deletion lines with red background and <code>-</code> prefix</td></tr>
+        <tr><td>Inserted Lines</td><td><code>inserted="3,5-7"</code></td><td>-</td><td>Shows addition lines with green background and <code>+</code> prefix</td></tr>
+        <tr><td>File Name</td><td><code>name="path/file.ts"</code></td><td><code>name="path/file.ts"</code></td><td>Displays file name/path above code block</td></tr>
+        <tr><td>Copy Button</td><td><code>copiable</code></td><td><code>copiable={true}</code></td><td>Adds a copy-to-clipboard button</td></tr>
+        <tr><td>Hide Line Numbers</td><td><code>hideLineNumbers</code></td><td><code>hideLineNumbers={true}</code></td><td>Toggles line number visibility</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Highlighting important lines</h3>
+  <div class="code"><button class="copy">Copy</button><pre>```tsx highlighted="2,4-6"
+function Button({ children }) {
+  const [clicked, setClicked] = useState(false);
+
+  const handleClick = () =&gt; {
+    setClicked(true);
+  };
+
+  return &lt;button onClick={handleClick}&gt;{children}&lt;/button&gt;;
+}
+```</pre></div>
+
+  <h3>Showing code diffs</h3>
+  <div class="code"><button class="copy">Copy</button><pre>```tsx removed="2" inserted="3"
+export async function getUser(id) {
+  const url = `/api/user/${id}`;
+  const url = `/api/v2/users/${id}`;
+  return fetch(url).then((r) =&gt; r.json());
+}
+```</pre></div>
+
+  <h3>File name with copy button</h3>
+  <div class="code"><button class="copy">Copy</button><pre>```tsx name="components/Header.tsx" copiable
+export function Header({ title }) {
+  return (
+    &lt;header&gt;
+      &lt;h1&gt;{title}&lt;/h1&gt;
+    &lt;/header&gt;
+  );
+}
+```</pre></div>
+
+  <h3>Combined features</h3>
+  <div class="code"><button class="copy">Copy</button><pre>```tsx name="src/utils/validator.ts" highlighted="4-6" removed="7" inserted="8" copiable hideLineNumbers
+export function validateEmail(email: string): boolean {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!email) {
+    return false;
+  }
+  const trimmedEmail = email.trimEnd();
+  const trimmedEmail = email.trim();
+  return regex.test(trimmedEmail);
+}
+```</pre></div>
+
+  <h3>Line range syntax</h3>
+  <p>The line range parser supports flexible syntax:</p>
+  <ul class="features">
+    <li>Single lines: <code>"1"</code> or <code>"1,2,3"</code></li>
+    <li>Ranges: <code>"1-5"</code> or <code>"1-5,8-10"</code></li>
+    <li>Mixed: <code>"1,3-5,7,9-12"</code></li>
+  </ul>
+  <div class="callout"><div><strong>Tip:</strong> Markdown attributes override global settings, so you can customize individual code blocks while keeping global defaults.</div></div>
+</section>
+
+<section id="global-configuration">
+  <h2>Global Configuration</h2>
+  <p>Set defaults for all code blocks using <code>getOverrides</code>:</p>
+  <div class="code"><div class="code-head"><code>App.tsx</code></div><button class="copy">Copy</button><pre>import { MuiMarkdown, getOverrides } from 'mui-markdown';
+import { Highlight, themes } from 'prism-react-renderer';
+
+const overrides = getOverrides({
+  Highlight,
+  themes,
+  copiable: true, // All code blocks have copy button
+  hideLineNumbers: false, // Show line numbers by default
+  copiedLabel: 'Copied!', // Customize copy button labels
+  copyLabel: 'Copy',
+});
+
+function App() {
+  return &lt;MuiMarkdown overrides={overrides}&gt;{markdownContent}&lt;/MuiMarkdown&gt;;
+}</pre></div>
+</section>
+
+<section id="customization">
+  <h2>Customization</h2>
+  <p>All visual elements can be customized using MUI theming.</p>
+
+  <h3>Custom colors</h3>
+  <div class="code"><button class="copy">Copy</button><pre>const overrides = getOverrides({
+  Highlight,
+  themes,
+  highlightColor: 'primary.main', // Use theme colors
+  removedColor: 'error.dark',
+  insertedColor: 'success.light',
+});</pre></div>
+
+  <h3>Custom copy button icons</h3>
+  <div class="code"><button class="copy">Copy</button><pre>import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import CheckIcon from '@mui/icons-material/Check';
+
+const overrides = getOverrides({
+  Highlight,
+  themes,
+  copyIcon: &lt;ContentCopyIcon /&gt;,
+  copiedIcon: &lt;CheckIcon /&gt;,
+  copyButtonSx: { top: 16, right: 16 }, // Custom positioning
+});</pre></div>
+
+  <h3>Custom copy component</h3>
+  <p>For complete control over the copy button, provide your own component:</p>
+  <div class="code"><button class="copy">Copy</button><pre>import { CopyComponentProps } from 'mui-markdown';
+import { IconButton } from '@mui/material';
+
+const CustomCopyButton = ({ handleCopy, code }: CopyComponentProps) =&gt; {
+  return (
+    &lt;IconButton
+      onClick={handleCopy}
+      sx={{ position: 'absolute', top: 8, right: 8 }}
+    &gt;
+      Copy {code.split('\n').length} lines
+    &lt;/IconButton&gt;
+  );
+};
+
+const overrides = getOverrides({
+  Highlight,
+  themes,
+  CopyComponent: CustomCopyButton,
+});</pre></div>
+
+  <h3>Custom file name display</h3>
+  <div class="code"><button class="copy">Copy</button><pre>import FolderIcon from '@mui/icons-material/Folder';
+
+const overrides = getOverrides({
+  Highlight,
+  themes,
+  showFileIcon: true, // Show/hide icon
+  fileIcon: &lt;FolderIcon /&gt;, // Custom icon
+  FileNameComponent: CustomTypography, // Custom component
+  fileNameSx: { fontWeight: 'bold' }, // Custom text styles
+  fileNameWrapperSx: { backgroundColor: 'primary.light', px: 3 },
+  useHighlightThemeBackground: true, // Prism theme background for file name wrapper
+});</pre></div>
+</section>
+
+<!-- ============ EXTRAS ============ -->
+<section id="diagrams">
+  <h2>Diagram Support (Mermaid)</h2>
+  <p><code>mui-markdown</code> uses <a href="https://github.com/mermaid-js/mermaid" target="_blank" rel="noopener">mermaid</a> as its diagramming and charting tool. First make sure <code>mermaid</code> is installed, then enable with <code>enableMermaid</code> and provide the <code>Diagram</code> component. Configure via <code>mermaidConfig</code>.</p>
+  <div class="code"><div class="code-head"><code>App.tsx</code></div><button class="copy">Copy</button><pre>import React from 'react';
+import { MuiMarkdown, getOverrides } from 'mui-markdown';
+import { Diagram } from 'mui-markdown/client'; // Handles mermaid init and content load
+import { Highlight, themes } from 'prism-react-renderer';
+
+const App = () =&gt; {
+  return (
+    &lt;MuiMarkdown
+      enableMermaid
+      mermaidConfig={{ startOnLoad: true }}
+      DiagramComponent={Diagram}
+    &gt;
+      {/* Markdown content */}
+    &lt;/MuiMarkdown&gt;
+  );
+};
+
+export default App;</pre></div>
+  <p>The <code>Diagram</code> component is a client-side component. You can create your own — it just needs to satisfy <code>(props: DiagramProps) =&gt; JSX.Element</code>. The props type is available under <code>mui-markdown</code> and <code>mui-markdown/client</code>.</p>
+</section>
+
+<section id="math">
+  <h2>Math Support (KaTeX)</h2>
+  <p><code>mui-markdown</code> uses <a href="https://github.com/KaTeX/KaTeX" target="_blank" rel="noopener">katex</a> to render math blocks. It's an optional dependency, so install it first:</p>
+  <div class="code"><button class="copy">Copy</button><pre># with npm
+npm i katex
+
+# with yarn
+yarn add katex</pre></div>
+  <p>Then enable with the <code>enableMath</code> prop and pass the <code>MathBlock</code> component (or your own satisfying <code>(props: MathBlockProps) =&gt; JSX.Element</code>). Don't forget the KaTeX stylesheet.</p>
+  <div class="code"><div class="code-head"><code>App.tsx</code></div><button class="copy">Copy</button><pre>import React from 'react';
+import { MuiMarkdown } from 'mui-markdown';
+import { MathBlock } from 'mui-markdown/client'; // Lazy-loads katex on the client
+import 'katex/dist/katex.min.css';
+
+const App = () =&gt; {
+  return (
+    &lt;MuiMarkdown enableMath MathComponent={MathBlock}&gt;
+      {`
+\`\`\`math
+E = mc^2
+\`\`\`
+`}
+    &lt;/MuiMarkdown&gt;
+  );
+};
+
+export default App;</pre></div>
+  <p>Math blocks are written as fenced code blocks with the <code>math</code> language. Pass <a href="https://katex.org/docs/options.html" target="_blank" rel="noopener">KaTeX options</a> via <code>katexOptions</code>. Without <code>enableMath</code>, <code>math</code> blocks render as regular code blocks — nothing changes unless you opt in.</p>
+</section>
+
+<section id="toc-extraction">
+  <h2>Table of Contents Extraction</h2>
+  <p>Use <code>extractHeadings</code> to get the list of headings (text, level, and the same anchor <code>id</code> that <code>MuiMarkdown</code> renders) and build your own table of contents:</p>
+  <div class="code"><div class="code-head"><code>App.tsx</code></div><button class="copy">Copy</button><pre>import React from 'react';
+import { Link, List, ListItem } from '@mui/material';
+import { MuiMarkdown, extractHeadings } from 'mui-markdown';
+
+const markdown = `
+# Getting Started
+
+## Installation
+
+## Usage
+`;
+
+const App = () =&gt; {
+  const headings = extractHeadings(markdown);
+
+  return (
+    &lt;&gt;
+      &lt;List&gt;
+        {headings.map((heading) =&gt; (
+          &lt;ListItem key={heading.id} sx={{ pl: heading.level * 2 }}&gt;
+            &lt;Link href={`#${heading.id}`}&gt;{heading.text}&lt;/Link&gt;
+          &lt;/ListItem&gt;
+        ))}
+      &lt;/List&gt;
+      &lt;MuiMarkdown&gt;{markdown}&lt;/MuiMarkdown&gt;
+    &lt;/&gt;
+  );
+};
+
+export default App;</pre></div>
+  <div class="callout"><div><strong>Tip:</strong> <code>extractHeadings</code> is a pure function (no rendering), so you can also use it on the server or at build time.</div></div>
+</section>
+
+<!-- ============ FRAMEWORKS ============ -->
+<section id="nextjs">
+  <h2>Next.js</h2>
+  <h3>Use with <code>useMDXComponents</code></h3>
+  <p>To add <code>mui-markdown</code> to <code>useMDXComponents</code>, either import <code>defaultMdxComponents</code> or use <code>getMdxComponents</code> if you need to override defaults.</p>
+  <div class="code"><div class="code-head"><code>mdx-components.ts</code></div><button class="copy">Copy</button><pre>import type { MDXComponents } from 'mdx/types';
+
+import { defaultMdxComponents, getMdxComponents } from 'mui-markdown';
+
+// Use getMdxComponents(options) to override defaults!
+// const mdxComponents = getMdxComponents();
+
+export function useMDXComponents(components: MDXComponents): MDXComponents {
+  return {
+    // ...mdxComponents,
+    ...defaultMdxComponents,
+    ...components,
+  };
+}</pre></div>
+</section>
+
+<footer>
+  MIT © <a href="https://github.com/HPouyanmehr" target="_blank" rel="noopener">Hosein Pouyanmehr</a> ·
+  <a href="https://github.com/HPouyanmehr/mui-markdown" target="_blank" rel="noopener">GitHub</a> ·
+  <a href="https://www.npmjs.com/package/mui-markdown" target="_blank" rel="noopener">npm</a>
+</footer>
+
+</main>
+</div>
+
+<script>
+  // Copy buttons
+  document.querySelectorAll('.code .copy').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const pre = btn.parentElement.querySelector('pre');
+      navigator.clipboard.writeText(pre.textContent).then(() => {
+        btn.textContent = 'Copied!';
+        setTimeout(() => (btn.textContent = 'Copy'), 1500);
+      });
+    });
+  });
+
+  // Mobile sidebar toggle
+  const sidebar = document.getElementById('sidebar');
+  document.getElementById('menu-btn').addEventListener('click', () => {
+    sidebar.classList.toggle('open');
+  });
+  sidebar.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') sidebar.classList.remove('open');
+  });
+
+  // Scrollspy
+  const navLinks = [...sidebar.querySelectorAll('a')];
+  const sections = navLinks
+    .map((a) => document.querySelector(a.getAttribute('href')))
+    .filter(Boolean);
+  const setActive = (id) => {
+    navLinks.forEach((a) =>
+      a.classList.toggle('active', a.getAttribute('href') === '#' + id)
+    );
+  };
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) setActive(entry.target.id);
+      });
+    },
+    { rootMargin: '-20% 0px -70% 0px' }
+  );
+  sections.forEach((s) => observer.observe(s));
+</script>
+
+</body>
+</html>
