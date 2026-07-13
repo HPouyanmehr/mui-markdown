@@ -10,7 +10,7 @@
     "jsx": "react-jsx",
     "lib": ["dom", "dom.iterable", "esnext"],
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "resolveJsonModule": true,

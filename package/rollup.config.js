@@ -11,7 +11,9 @@ const externals = [
   '@emotion/react',
   '@emotion/styled',
   'markdown-to-jsx',
+  'markdown-to-jsx/react',
   'mermaid',
+  'katex',
   'prism-react-renderer',
 ]
 
