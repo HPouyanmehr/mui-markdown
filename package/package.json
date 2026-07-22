@@ -1,6 +1,6 @@
 {
   "name": "mui-markdown",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "private": false,
   "description": "mui-markdown uses markdown-to-jsx and MUI(formerly material-ui) to help you render MD/MDX files with MUI components.",
   "license": "MIT",
@@ -14,7 +14,7 @@
     "markdown diagram",
     "markdown mermaid"
   ],
-  "homepage": "https://github.com/HPouyanmehr/mui-markdown",
+  "homepage": "https://hpouyanmehr.github.io/mui-markdown/",
   "repository": {
     "type": "git",
     "url": "https://github.com/HPouyanmehr/mui-markdown"
